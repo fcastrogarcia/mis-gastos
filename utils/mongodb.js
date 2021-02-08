@@ -1,6 +1,8 @@
-import { MongoClient } from "mongodb";
+import mongoose from "mongoose";
 
-const { MONGODB_URI, MONGODB_DB } = process.env;
+const { MONGODB_URI, MONGODB_URI_DEV, MONGODB_DB } = process.env;
+
+const uri = process.env.NODE_ENV === "development" ? MONGODB_URI_DEV : MONGODB_URI;
 
 if (!MONGODB_URI) {
   throw new Error("Please define the MONGODB_URI environment variable inside .env.local");
@@ -27,12 +29,7 @@ export async function connectToDatabase() {
       useUnifiedTopology: true,
     };
 
-    cached.promise = MongoClient.connect(MONGODB_URI, opts).then(client => {
-      return {
-        client,
-        db: client.db(MONGODB_DB),
-      };
-    });
+    cached.promise = mongoose.connect(uri, opts);
   }
   cached.conn = await cached.promise;
   return cached.conn;

@@ -9,6 +9,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "mongodb": "^3.6.4",
+    "mongoose": "^5.11.15",
     "next": "latest",
     "next-auth": "^3.2.0",
     "react": "17.0.1",
