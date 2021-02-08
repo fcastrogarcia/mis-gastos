@@ -1,4 +1,4 @@
-import authenticate from "utils/auth";
+import { authenticate } from "utils/auth";
 
 function Home(props) {
   return <div className="container"></div>;

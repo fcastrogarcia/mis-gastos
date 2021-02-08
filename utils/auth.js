@@ -1,6 +1,6 @@
 import { getSession } from "next-auth/client";
 
-const authenticate = (redirect = "/login") => async ctx => {
+export const authenticate = (redirect = "/login") => async ctx => {
   const session = await getSession(ctx);
 
   if (!session) {
@@ -15,5 +15,3 @@ const authenticate = (redirect = "/login") => async ctx => {
 
   return { props: { session } };
 };
-
-export default authenticate;
