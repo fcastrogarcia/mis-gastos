@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-const { MONGODB_URI, MONGODB_URI_DEV, MONGODB_DB } = process.env;
+const { MONGODB_URI, MONGODB_URI_DEV, MONGODB_DB, NODE_ENV } = process.env;
 
-const uri = process.env.NODE_ENV === "development" ? MONGODB_URI_DEV : MONGODB_URI;
+const uri = NODE_ENV === "development" ? MONGODB_URI_DEV : MONGODB_URI;
 
 if (!MONGODB_URI) {
   throw new Error("Please define the MONGODB_URI environment variable inside .env.local");

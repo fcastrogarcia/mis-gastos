@@ -1,6 +1,6 @@
 import { getSession } from "next-auth/client";
 import { signIn } from "next-auth/client";
-import styles from "./styles.module.scss";
+import styles from "./Login.module.scss";
 import { FcGoogle } from "react-icons/fc";
 
 const providers = [{ id: "google", name: "google" }];
