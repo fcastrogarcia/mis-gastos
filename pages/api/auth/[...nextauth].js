@@ -1,15 +1,8 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
+import config from "config";
 
-const {
-  NEXTAUTH_URL,
-  MONGODB_URI_DEV,
-  MONGODB_URI,
-  GOOGLE_CLIENT_ID,
-  GOOGLE_CLIENT_SECRET,
-} = process.env;
-
-const database = process.env.NODE_ENV === "development" ? MONGODB_URI_DEV : MONGODB_URI;
+const { DB_URI, NEXTAUTH_URL, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = config;
 
 export default NextAuth({
   providers: [
@@ -19,5 +12,5 @@ export default NextAuth({
     }),
   ],
   site: NEXTAUTH_URL,
-  database,
+  database: DB_URI,
 });

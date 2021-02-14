@@ -1,11 +1,10 @@
 import mongoose from "mongoose";
+import config from "config";
 
-const { MONGODB_URI, MONGODB_URI_DEV, MONGODB_DB, NODE_ENV } = process.env;
+const { DB_URI, MONGODB_DB } = config;
 
-const uri = NODE_ENV === "development" ? MONGODB_URI_DEV : MONGODB_URI;
-
-if (!MONGODB_URI) {
-  throw new Error("Please define the MONGODB_URI environment variable inside .env.local");
+if (!DB_URI) {
+  throw new Error("Please define the DB_URI environment variable inside .env.local");
 }
 
 if (!MONGODB_DB) {
@@ -29,7 +28,7 @@ export async function connectToDatabase() {
       useUnifiedTopology: true,
     };
 
-    cached.promise = mongoose.connect(uri, opts);
+    cached.promise = mongoose.connect(DB_URI, opts);
   }
   cached.conn = await cached.promise;
   return cached.conn;
