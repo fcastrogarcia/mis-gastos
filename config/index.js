@@ -5,9 +5,11 @@ const {
   MONGODB_DB,
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
+  JWT_SECRET,
 } = process.env;
 
 const DB_URI = process.env.NODE_ENV === "development" ? MONGODB_URI_DEV : MONGODB_URI;
+// const DB_URI = MONGODB_URI;
 
 export default {
   DB_URI,
@@ -15,4 +17,5 @@ export default {
   NEXTAUTH_URL,
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
+  JWT_SECRET,
 };
