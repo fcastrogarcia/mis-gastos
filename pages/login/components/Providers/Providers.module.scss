@@ -1,0 +1,33 @@
+@import "../../../../styles/variables.scss";
+
+.container {
+  position: relative;
+  right: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.providers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 380px;
+  padding: 34px;
+  box-shadow: $shadow-vercel;
+  border-radius: 6px;
+  background: $gray-800;
+}
+
+.providers-title {
+  color: $gray-300;
+  text-align: center;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  margin-bottom: 30px;
+}
+
+.google {
+  padding-left: 10px;
+}

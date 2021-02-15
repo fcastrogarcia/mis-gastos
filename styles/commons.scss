@@ -3,12 +3,34 @@
 .layout {
   width: 100vw;
   max-width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   max-height: 100%;
+  height: 100vh;
 }
 
 .flex {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.button--main-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $indigo-700;
+  color: $gray-200;
+  height: 55px;
+  font-size: 16px;
+  width: 300px;
+  max-width: 100%;
+  border-radius: 4px;
+  font-weight: 700;
+  transition: all 0.15s ease-in-out;
+  letter-spacing: 0.25px;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    background: $indigo-800;
+  }
 }

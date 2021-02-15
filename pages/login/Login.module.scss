@@ -1,63 +1,29 @@
 @import "../../styles/variables.scss";
 
-.container {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  width: 100%;
-  height: 100%;
-  background: $gray-900;
+@mixin flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .background {
   display: flex;
+  position: relative;
   justify-content: center;
   background: $gray-900;
 }
 
-.login {
+.container {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 30px;
-}
-
-.logo-container {
-  border-radius: 50%;
-  background: $gray-800;
-  width: 40px;
-  height: 40px;
-  padding: 13px;
-  margin: 0 auto;
-  box-shadow: $shadow-vercel;
-}
-
-.button--main-action {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: $indigo-700;
-  color: $gray-200;
-  height: 55px;
-  font-size: 16px;
-  width: 300px;
-  max-width: 100%;
-  border-radius: 4px;
-  font-weight: 700;
-  transition: all 0.15s ease-in-out;
-  letter-spacing: 0.25px;
-
-  &:hover {
-    box-shadow: $shadow-md;
-    background: $indigo-800;
-  }
-}
-
-.google {
-  padding-left: 10px;
+  @include flex;
+  width: 100%;
+  height: 100%;
+  max-width: 1280px;
 }
 
 .header {
+  display: flex;
+  justify-content: space-between;
   position: absolute;
   top: 0;
   right: 0;
@@ -65,22 +31,24 @@
   padding: 30px;
 }
 
-.providers {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  max-width: 380px;
-  padding: 34px;
-  box-shadow: $shadow-vercel;
-  border-radius: 6px;
-  background: $gray-800;
+.header-title {
+  color: $gray-400;
+  opacity: 1;
+  cursor: default;
 }
 
-.title {
-  color: $gray-300;
-  text-align: center;
-  font-size: 16px;
-  letter-spacing: 0.5px;
-  margin-bottom: 30px;
+.content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  @include flex;
+}
+
+.hero {
+  display: flex;
+  justify-content: center;
+  background: $gray-900;
+  position: absolute;
+  left: 400px;
+  height: 680px;
 }
