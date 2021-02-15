@@ -1,13 +1,15 @@
 import cx from "classnames";
-import { getSession } from "next-auth/client";
 import { signIn } from "next-auth/client";
 import { FcGoogle } from "react-icons/fc";
 import Image from "next/image";
 import styles from "./Login.module.scss";
+import { authenticateRoute } from "utils/auth";
 
 const providers = [{ id: "google", name: "Google" }];
 
 const Login = () => {
+  const handleSignIn = id => () => signIn(id);
+
   return (
     <div className="layout">
       <div className={styles.container}>
@@ -32,7 +34,7 @@ const Login = () => {
               <div key={provider.name}>
                 <button
                   className={styles["button--main-action"]}
-                  onClick={() => signIn(provider.id)}
+                  onClick={handleSignIn(provider.id)}
                 >
                   Sign in with {provider.name}
                   <FcGoogle size={25} className={styles.google} />
@@ -48,18 +50,7 @@ const Login = () => {
 
 export default Login;
 
-export async function getServerSideProps(ctx) {
-  const session = await getSession(ctx);
-
-  if (session) {
-    return {
-      props: {},
-      redirect: {
-        destination: "/main",
-        permanent: false,
-      },
-    };
-  }
-
-  return { props: { session } };
-}
+export const getServerSideProps = authenticateRoute({
+  redirect: "/main",
+  isPrivate: false,
+});

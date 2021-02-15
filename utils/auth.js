@@ -1,10 +1,15 @@
 import jwt from "next-auth/jwt";
 import { getSession } from "next-auth/client";
 
-export const authenticate = (redirect = "/login") => async ctx => {
+export const authenticateRoute = ({
+  redirect = "/login",
+  isPrivate = true,
+} = {}) => async ctx => {
   const session = await getSession(ctx);
 
-  if (!session) {
+  const condition = isPrivate ? !session : session;
+
+  if (condition) {
     return {
       props: {},
       redirect: {

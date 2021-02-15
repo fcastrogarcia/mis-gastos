@@ -8,6 +8,7 @@ const {
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
   JWT_SECRET,
+  // JWT_SIGNING_PRIVATE_KEY,
 } = config;
 
 export default NextAuth({
@@ -24,10 +25,11 @@ export default NextAuth({
   site: NEXTAUTH_URL,
   secret: JWT_SECRET,
   database: DB_URI,
-  session: {
-    jwt: true,
-  },
-  jwt: {
-    secureCookie: true,
-  },
+  // session: {
+  //   jwt: true,
+  // },
+  // jwt: {
+  //   secureCookie: true,
+  //   signingKey: JWT_SIGNING_PRIVATE_KEY,
+  // },
 });

@@ -6,6 +6,7 @@ const {
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
   JWT_SECRET,
+  JWT_SIGNING_PRIVATE_KEY,
 } = process.env;
 
 const DB_URI = process.env.NODE_ENV === "development" ? MONGODB_URI_DEV : MONGODB_URI;
@@ -18,4 +19,5 @@ export default {
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
   JWT_SECRET,
+  JWT_SIGNING_PRIVATE_KEY,
 };

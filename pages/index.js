@@ -1,4 +1,4 @@
-import { authenticate } from "utils/auth";
+import { authenticateRoute } from "utils/auth";
 
 function Home(props) {
   return <div className="container"></div>;
@@ -6,4 +6,4 @@ function Home(props) {
 
 export default Home;
 
-export const getServerSideProps = authenticate();
+export const getServerSideProps = authenticateRoute();
