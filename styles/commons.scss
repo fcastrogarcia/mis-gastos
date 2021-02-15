@@ -12,28 +12,3 @@
   justify-content: center;
   align-items: center;
 }
-
-.button--main-action {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: $indigo-700;
-  color: $white;
-  height: 55px;
-  font-size: 17px;
-  width: 300px;
-  border-radius: 4px;
-  font-weight: 700;
-  transition: all 0.2s ease-in-out;
-  box-shadow: $shadow;
-  letter-spacing: 0.25px;
-
-  &:hover {
-    box-shadow: $shadow-md;
-    background: $indigo-800;
-  }
-
-  & .google {
-    padding-left: 10px;
-  }
-}
