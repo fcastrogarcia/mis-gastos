@@ -3,6 +3,7 @@ import dbConnect from "utils/dbConnect";
 import Payment from "models/Payment";
 
 export default async (req, res) => {
+  console.log(req.headers.cookie);
   const session = await getSession({ req });
 
   if (!session) {
@@ -10,34 +11,34 @@ export default async (req, res) => {
   } else {
     await dbConnect();
 
-    const { body, method } = req;
+    const { body, method, query } = req;
     const { user } = session;
-
-    console.log(user);
 
     switch (method) {
       case "GET":
         try {
           const payments = await Payment.find({
-            user: req.body.user,
+            user: user.id,
           });
-          res.status(200).json({ success: true, data: payments });
+          res.status(200).json({ data: payments });
         } catch (err) {
-          res.status(400).json({ success: false, message: err.message });
+          res.status(400).json({ message: err.message });
         }
         break;
       case "POST":
         try {
-          const payment = await Payment.create({ body });
-          const current_status = payment.current_status;
-          res.status(200).json({ payment: { ...payment._doc, current_status } });
+          // faltaría hacer la validación acá
+          const payment = await Payment.create({ ...body });
+          res.status(200).json({ data: payment });
         } catch (err) {
           console.error(err);
-          res.status(400).json({ success: false, message: err.message });
+          res.status(400).json({ message: err.message });
         }
         break;
       default:
-        res.status(400).json({ success: false });
+        res
+          .status(400)
+          .json({ success: false, message: "method not supported for this route" });
         break;
     }
   }
