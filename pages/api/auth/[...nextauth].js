@@ -32,4 +32,10 @@ export default NextAuth({
   //   secureCookie: true,
   //   signingKey: JWT_SIGNING_PRIVATE_KEY,
   // },
+  callbacks: {
+    async session(session, token) {
+      session.user.id = token.id;
+      return session;
+    },
+  },
 });
