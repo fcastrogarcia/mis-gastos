@@ -11,6 +11,7 @@ const PaymentSchema = new Schema(
       type: Schema.Types.ObjectId,
       required: true,
     },
+    type: { type: String, required: true },
     name: { type: String, required: true },
     amount: { type: Number, required: true },
     due_date: Date,

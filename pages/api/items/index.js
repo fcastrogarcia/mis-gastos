@@ -1,9 +1,8 @@
 import { getSession } from "next-auth/client";
 import dbConnect from "utils/dbConnect";
-import Payment from "models/Payment";
+import { getItemsData, createItem } from "controllers/items";
 
 export default async (req, res) => {
-  console.log(req.headers.cookie);
   const session = await getSession({ req });
 
   if (!session) {
@@ -11,28 +10,35 @@ export default async (req, res) => {
   } else {
     await dbConnect();
 
-    const { body, method, query } = req;
-    const { user } = session;
+    const { body = {}, method = "", query = {} } = req;
+    const { user = {} } = session;
+    const { type = "" } = query;
+
+    const types = type ? type.split(",") : [];
 
     switch (method) {
       case "GET":
         try {
-          const payments = await Payment.find({
-            user: user.id,
-          });
-          res.status(200).json({ data: payments });
+          if (!types.length)
+            throw new Error(
+              "Item type is required as query parameter. (i.e.: ?type=expense,payment)"
+            );
+
+          const data = await getItemsData(user.id, types);
+
+          res.status(200).json({ data });
         } catch (err) {
           res.status(400).json({ message: err.message });
         }
         break;
       case "POST":
         try {
-          // faltaría hacer la validación acá
-          const payment = await Payment.create({ ...body });
-          res.status(200).json({ data: payment });
+          const data = await createItem(body);
+
+          res.status(200).json({ data });
         } catch (err) {
           console.error(err);
-          res.status(400).json({ message: err.message });
+          res.status(400).json({ message: err.message, payload: type });
         }
         break;
       default:

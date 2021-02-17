@@ -7,6 +7,7 @@ const ExpenseSchema = new Schema({
     type: Schema.Types.ObjectId,
     required: true,
   },
+  type: { type: String, required: true },
   name: { type: String, required: true },
   amount: Number,
   comment: String,
@@ -30,4 +31,4 @@ ExpenseSchema.pre("save", function (next) {
   next();
 });
 
-export default mongoose.models.Payment || mongoose.model("Payment", ExpenseSchema);
+export default mongoose.models.Expense || mongoose.model("Expense", ExpenseSchema);
