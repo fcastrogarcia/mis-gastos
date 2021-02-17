@@ -1,30 +1,30 @@
 import Payment from "models/Payment";
 import Expense from "models/Expense";
 
-export async function getItemsData(userId = "", types = []) {
-  const config = {
+export async function getItems(userId = "", types = []) {
+  const parameters = {
     user: userId,
   };
 
-  const dbQueries = types.reduce((acc, curr) => {
+  const queries = types.reduce((acc, curr) => {
     switch (curr) {
       case "payment":
-        const paymentsPromise = Payment.find(config);
-        return [...acc, paymentsPromise];
+        const payments = Payment.find(parameters);
+        return [...acc, payments];
       case "expense":
-        const expensesPromise = Expense.find(config);
-        return [...acc, expensesPromise];
+        const expenses = Expense.find(parameters);
+        return [...acc, expenses];
       default:
         return acc;
     }
   }, []);
 
-  const data = await Promise.all(dbQueries);
+  const data = await Promise.all(queries);
 
   return [].concat(...data);
 }
 
-export async function createItem(body = {}, type = "") {
+export async function createItem(body = {}) {
   const { type } = body;
 
   if (!type) throw new Error("Type property is required in request body");
