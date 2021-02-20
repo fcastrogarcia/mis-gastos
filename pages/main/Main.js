@@ -1,6 +1,6 @@
 import { shape } from "prop-types";
 import { authenticateRoute } from "utils/auth";
-import styles from "./styles.js";
+// import styles from "./styles.js";
 import Layout from "components/Layout";
 import { signOut } from "next-auth/client";
 

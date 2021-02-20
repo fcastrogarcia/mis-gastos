@@ -1,8 +1,6 @@
-import { shape } from "prop-types";
 import styles from "./styles";
 
-const Header = ({ user }) => {
-  console.log(user);
+const Header = () => {
   return (
     <styles.Header>
       <styles.Logo width={32} height={32} />
@@ -11,11 +9,3 @@ const Header = ({ user }) => {
 };
 
 export default Header;
-
-Header.propTypes = {
-  user: shape({}),
-};
-
-Header.defaultProps = {
-  user: {},
-};
