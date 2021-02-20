@@ -1,12 +1,14 @@
-import styles from "./Layout.module.scss";
 import Header from "components/Header";
+import styled from "styled-components";
 
-const Layout = ({ session, children }) => {
+const BaseLayout = styled.div.attrs({ className: "layout" })``;
+
+const Layout = ({ session, children, ...rest }) => {
   return (
-    <div className="layout">
+    <BaseLayout {...rest}>
       <Header user={session.user} />
       {children}
-    </div>
+    </BaseLayout>
   );
 };
 

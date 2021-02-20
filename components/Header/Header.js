@@ -1,13 +1,12 @@
 import { shape } from "prop-types";
-import styles from "./Header.module.scss";
-import Logo from "components/Logo";
+import styles from "./styles";
 
 const Header = ({ user }) => {
   console.log(user);
   return (
-    <header className={styles.container}>
-      <Logo className={styles.icon} width={32} height={32} />
-    </header>
+    <styles.Header>
+      <styles.Logo width={32} height={32} />
+    </styles.Header>
   );
 };
 

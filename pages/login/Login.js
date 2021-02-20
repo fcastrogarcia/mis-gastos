@@ -1,24 +1,24 @@
 import cx from "classnames";
 import Image from "next/image";
-import styles from "./Login.module.scss";
+import styles from "./styles.js";
 import { authenticateRoute } from "utils/auth";
 import Providers from "./components/Providers";
 import Logo from "components/Logo";
 
 const Header = () => (
-  <header className={styles.header}>
-    <h2 className={styles["header-title"]}>/Expense tracker</h2>
+  <styles.Header>
+    <styles.HeaderTitle>/Expense tracker</styles.HeaderTitle>
     <Logo />
-  </header>
+  </styles.Header>
 );
 
 const Login = () => {
   return (
-    <div className={cx("layout", styles.background)}>
-      <div className={styles.container}>
+    <styles.Layout>
+      <styles.Container>
         <Header />
-        <div className={styles.content}>
-          <div className={styles["hero"]}>
+        <styles.Content>
+          <styles.Hero>
             <Image
               src="/assets/finances-6.svg"
               objectFit="cover"
@@ -26,11 +26,11 @@ const Login = () => {
               width={800}
               quality={100}
             />
-          </div>
+          </styles.Hero>
           <Providers />
-        </div>
-      </div>
-    </div>
+        </styles.Content>
+      </styles.Container>
+    </styles.Layout>
   );
 };
 

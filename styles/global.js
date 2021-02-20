@@ -1,4 +1,7 @@
-* {
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
@@ -35,3 +38,6 @@ button {
   outline: none;
   cursor: pointer;
 }
+`;
+
+export default GlobalStyle;

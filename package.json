@@ -16,7 +16,12 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-icons": "^4.2.0",
-    "sass": "^1.32.6"
+    "sass": "^1.32.6",
+    "styled-components": "^5.2.1",
+    "styled-icons": "^10.28.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.12.0"
+  }
 }
