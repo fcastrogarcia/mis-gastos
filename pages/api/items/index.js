@@ -1,6 +1,6 @@
 import { getSession } from "next-auth/client";
 import dbConnect from "utils/dbConnect";
-import { getItems, createItem } from "queries/items";
+import { getItems, createItem } from "db/items";
 
 export default async (req, res) => {
   const session = await getSession({ req });
@@ -34,7 +34,7 @@ export default async (req, res) => {
           const data = await createItem(body);
 
           res.status(200).json({ data });
-        } catch (err) {
+        } catch {
           console.error(err);
           res.status(400).json({ message: err.message, payload: type });
         }
