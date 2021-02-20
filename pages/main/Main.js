@@ -1,32 +1,16 @@
-import { useEffect } from "react";
 import { shape } from "prop-types";
-import { signOut } from "next-auth/client";
 import { authenticateRoute } from "utils/auth";
-import cx from "classnames";
 import styles from "./Main.module.scss";
-import Header from "./components/Header";
+import Layout from "components/Layout";
+// import { signOut } from "next-auth/client";
 
 const Main = ({ session }) => {
-  console.log(session);
-  // useEffect(() => {
-  //   fetch("/api/items")
-  //     .then(res => res.json())
-  //     .then(res => console.log(res))
-  //     .catch(err => console.log(err));
-  // }, []);
-
   return (
-    <div className={cx("layout")}>
+    <Layout session={session}>
       <div className={styles.container}>
-        <button
-          styles={{ zIndex: 10000 }}
-          onClick={() => signOut({ callbackUrl: "/login" })}
-        >
-          Sign out
-        </button>
-        {/* <Header user={session.user} /> */}
+        {/* <button onClick={() => signOut({ callbackUrl: "/login" })}>Sign out</button> */}
       </div>
-    </div>
+    </Layout>
   );
 };
 

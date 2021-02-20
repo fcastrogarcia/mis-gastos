@@ -1,0 +1,25 @@
+@import "styles/variables.scss";
+
+.container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  border-right: 2px solid $gray-200;
+  padding: 20px 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  background: $white;
+  z-index: 100000;
+}
+
+.icon {
+  background: initial;
+  box-shadow: initial;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
