@@ -1,17 +1,12 @@
-import { shape } from "prop-types";
 import styles from "./styles";
+import UserBadge from "./components/UserBadge";
 
-const Sidebar = ({ user }) => {
-  console.log(user);
-  return <styles.Sidebar>Sidebar</styles.Sidebar>;
-};
-
-Sidebar.propTypes = {
-  user: shape({}),
-};
-
-Sidebar.defaultProps = {
-  user: {},
+const Sidebar = () => {
+  return (
+    <styles.Sidebar>
+      <UserBadge />
+    </styles.Sidebar>
+  );
 };
 
 export default Sidebar;

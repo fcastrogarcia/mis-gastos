@@ -8,7 +8,8 @@ const Sidebar = styled.aside`
   width: 300px;
   z-index: 100;
   background: ${({ theme }) => theme.colors.gray[300]};
-  padding: 30px;
+  display: grid;
+  grid-template-rows: 70px 1fr;
   box-sizing: border-box;
 `;
 

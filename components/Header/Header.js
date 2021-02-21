@@ -3,7 +3,7 @@ import styles from "./styles";
 const Header = () => {
   return (
     <styles.Header>
-      <styles.Logo width={32} height={32} />
+      <styles.Logo width={30} height={30} />
     </styles.Header>
   );
 };

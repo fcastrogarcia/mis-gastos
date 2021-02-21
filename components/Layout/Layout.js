@@ -4,11 +4,11 @@ import Sidebar from "components/Sidebar";
 
 const BaseLayout = styled.div.attrs({ className: "layout" })``;
 
-const Layout = ({ session, children, ...rest }) => {
+const Layout = ({ children, ...rest }) => {
   return (
     <BaseLayout {...rest}>
       <Header />
-      <Sidebar user={session.user} />
+      <Sidebar />
       {children}
     </BaseLayout>
   );

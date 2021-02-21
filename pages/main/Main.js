@@ -1,15 +1,11 @@
-import { shape } from "prop-types";
 import { authenticateRoute } from "utils/auth";
-// import styles from "./styles.js";
 import Layout from "components/Layout";
-import { signOut } from "next-auth/client";
+import styles from "./styles";
 
-const Main = ({ session }) => {
+const Main = () => {
   return (
-    <Layout session={session}>
-      <div>
-        <button onClick={() => signOut({ callbackUrl: "/login" })}>Sign out</button>
-      </div>
+    <Layout>
+      <styles.Container></styles.Container>
     </Layout>
   );
 };
@@ -17,11 +13,3 @@ const Main = ({ session }) => {
 export default Main;
 
 export const getServerSideProps = authenticateRoute();
-
-Main.propTypes = {
-  session: shape({}),
-};
-
-Main.defaultProps = {
-  session: {},
-};
