@@ -34,7 +34,7 @@ export default async (req, res) => {
           const data = await createItem(body);
 
           res.status(200).json({ data });
-        } catch {
+        } catch (err) {
           console.error(err);
           res.status(400).json({ message: err.message, payload: type });
         }

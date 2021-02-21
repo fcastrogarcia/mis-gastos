@@ -8,12 +8,14 @@ export async function getItems(userId = "", types = []) {
 
   const queries = types.reduce((acc, curr) => {
     switch (curr) {
-      case "payment":
+      case "payment": {
         const payments = Payment.find(parameters);
         return [...acc, payments];
-      case "expense":
+      }
+      case "expense": {
         const expenses = Expense.find(parameters);
         return [...acc, expenses];
+      }
       default:
         return acc;
     }
