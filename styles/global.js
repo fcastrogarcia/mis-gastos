@@ -17,6 +17,7 @@ body {
 body,
 button {
   font-family: "Manrope", sans-serif;
+  color: initial;
 }
 
 ul {
