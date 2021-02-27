@@ -9,7 +9,7 @@ const Container = styled.div`
 `;
 
 const BaseButton = styled.button`
-  padding: 12px 16px;
+  padding: 10px 16px;
   border-radius: 4px;
   background: ${({ theme }) => theme.colors.indigo[100]};
   font-weight: 600;

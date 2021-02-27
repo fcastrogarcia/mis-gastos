@@ -5,6 +5,8 @@ import { getItems, createItem } from "db/items";
 export default async (req, res) => {
   const session = await getSession({ req });
 
+  console.log(req.headers.cookie);
+
   if (!session) {
     res.status(401).json({ message: "Unauthorized" });
   } else {
