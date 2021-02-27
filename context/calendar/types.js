@@ -1,0 +1,3 @@
+export default {
+  SET_SELECTED_PERIOD: "SET_CURRENT_PERIOD",
+};

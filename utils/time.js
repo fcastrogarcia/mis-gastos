@@ -1,4 +1,12 @@
+import startOfMonth from "date-fns/startOfMonth";
+
 const ABOUT_TO_LAPSE_TIME = 3 * 24 * 60 * 60 * 1000;
+
+export const getPeriod = date => {
+  if (!date) return null;
+
+  return startOfMonth(date);
+};
 
 export const getCurrentTime = () => new Date().getTime();
 
