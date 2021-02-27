@@ -3,12 +3,12 @@ import { authenticateRoute } from "utils/auth";
 import Layout from "components/Layout";
 import styles from "./styles";
 import CalendarProvider from "context/calendar";
-import Period from "./components/Period";
+import TopBar from "./components/TopBar";
 
 const Children = () => {
   return (
     <styles.Container>
-      <Period />
+      <TopBar />
     </styles.Container>
   );
 };
