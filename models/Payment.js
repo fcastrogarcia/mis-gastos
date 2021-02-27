@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { getStatus } from "utils/time";
+import startOfMonth from "date-fns/startOfMonth";
 
 const { Schema } = mongoose;
 
@@ -17,15 +18,13 @@ const PaymentSchema = new Schema(
     due_date: Date,
     provider: String,
     comment: String,
-    period: { month: Number, year: Number },
+    period: { type: Date },
     status: { is_paid: { type: Boolean, default: false }, date: Date },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now },
   },
   opts
 );
-
-// virtuals
 
 PaymentSchema.virtual("current_status").get(function () {
   const isPaid = this.status.is_paid;
@@ -36,17 +35,13 @@ PaymentSchema.virtual("current_status").get(function () {
   else return getStatus(dueDate);
 });
 
-// middlewares
-
 PaymentSchema.pre("save", function (next) {
   const createdAt = this.created_at;
   const dueDate = this.due_date;
   const nextDate = dueDate ? dueDate : createdAt;
+  const date = startOfMonth(new Date(nextDate).getTime());
 
-  this.period = {
-    month: nextDate.getUTCMonth(),
-    year: nextDate.getUTCFullYear(),
-  };
+  this.period = date;
 
   next();
 });
