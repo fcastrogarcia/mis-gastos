@@ -1,5 +1,5 @@
 import { createContext, useReducer, useContext } from "react";
-import { getPeriod } from "utils/time";
+import { getCurrentPeriod } from "utils/time";
 import types from "./types";
 import { node } from "prop-types";
 
@@ -7,8 +7,8 @@ const CalendarStateContext = createContext();
 const CalendarDispatchContext = createContext();
 
 const initialState = {
-  currentPeriod: getPeriod(new Date()),
-  selectedPeriod: getPeriod(new Date()),
+  currentPeriod: getCurrentPeriod(),
+  selectedPeriod: getCurrentPeriod(),
 };
 
 const reducer = (state, action) => {

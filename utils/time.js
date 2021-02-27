@@ -8,6 +8,8 @@ export const getPeriod = date => {
   return startOfMonth(date);
 };
 
+export const getCurrentPeriod = () => getPeriod(new Date());
+
 export const getCurrentTime = () => new Date().getTime();
 
 export const getStatus = dueDate => {
