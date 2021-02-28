@@ -15,7 +15,7 @@ const Header = styled.header`
   box-sizing: border-box;
   background: ${({ theme }) => theme.colors.basic.white};
   z-index: 99;
-  width: calc(100% - 300px);
+  width: calc(100% - 400px);
 `;
 
 const Logo = styled(BaseLogo).attrs({ className: "flex" })`

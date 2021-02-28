@@ -5,7 +5,7 @@ import { node } from "prop-types";
 
 const BaseLayout = styled.div.attrs({ className: "layout" })`
   padding-top: 70px;
-  width: calc(100% - 300px);
+  width: calc(100% - 400px);
 `;
 
 const Layout = ({ children, ...rest }) => {

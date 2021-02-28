@@ -1,28 +1,27 @@
-// import { useEffect } from "react";
 import { authenticateRoute } from "utils/auth";
 import Layout from "components/Layout";
 import styles from "./styles";
 import CalendarProvider from "context/calendar";
+import ItemsProvider from "context/items";
 import TopBar from "./components/TopBar";
+import Table from "./components/Table";
 
 const Children = () => {
   return (
     <styles.Container>
       <TopBar />
+      <Table />
     </styles.Container>
   );
 };
 
 const Main = () => {
-  // useEffect(() => {
-  //   fetch("/api/items?type=payment")
-  //     .then(res => res.json())
-  //     .then(res => console.log(res));
-  // }, []);
   return (
     <Layout>
       <CalendarProvider>
-        <Children />
+        <ItemsProvider>
+          <Children />
+        </ItemsProvider>
       </CalendarProvider>
     </Layout>
   );

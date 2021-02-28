@@ -5,7 +5,7 @@ const Sidebar = styled.aside`
   top: 0;
   right: 0;
   bottom: 0;
-  width: 300px;
+  width: 400px;
   z-index: 100;
   background: ${({ theme }) => theme.colors.gray[300]};
   display: grid;
