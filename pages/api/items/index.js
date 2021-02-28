@@ -24,18 +24,18 @@ export default async (req, res) => {
           if (!types.length || !user.id)
             throw new Error("Item type and userId are required");
 
-          const data = await getItems(user.id, types);
+          const items = await getItems(user.id, types);
 
-          res.status(200).json({ data });
+          res.status(200).json({ items });
         } catch (err) {
           res.status(400).json({ message: err.message });
         }
         break;
       case "POST":
         try {
-          const data = await createItem(body);
+          const items = await createItem(body);
 
-          res.status(200).json({ data });
+          res.status(200).json({ items });
         } catch (err) {
           console.error(err);
           res.status(400).json({ message: err.message, payload: type });
