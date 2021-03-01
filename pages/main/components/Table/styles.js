@@ -38,56 +38,73 @@ const Header = styled.thead`
 `;
 
 const HeaderCell = styled.th`
-  height: 50px;
+  height: 48px;
   text-align: left;
   background: ${getColor("gray", 100)};
-  padding-left: 16px;
+  padding-left: 24px;
+  font-weight: 500;
 `;
 
 const Cell = styled.td`
   height: 70px;
-  padding-left: 16px;
-  color: ${getColor("gray", 800)};
-  font-weight: 500;
+  padding-left: 24px;
+  color: ${getColor("gray", 700)};
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.25rem;
 
-  &.table-cell {
+  & .table-text {
     &--name {
       font-weight: 500;
+      color: ${getColor("gray", 800)};
     }
+    &--provider {
+      font-weight: 400;
+      color: ${getColor("gray", 600)};
+    }
+  }
+
+  &.table-cell {
+    &--amount {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
     &--status {
       text-transform: capitalize;
       font-size: 14px;
 
-      & p {
+      & span {
         border-radius: 50px;
-        width: min-content;
         padding: 4px 8px;
+        font-weight: 600;
+        font-size: 0.8rem;
 
         ${({ status }) => {
           switch (status) {
             case "due":
               return css`
-                color: ${getColor("red", 600)};
+                color: ${getColor("red", 800)};
                 background: ${getColor("red", 100)};
               `;
             case "paid":
               return css`
-                color: ${getColor("green", 600)};
+                color: ${getColor("green", 800)};
                 background: ${getColor("green", 100)};
               `;
             case "pending":
               return css`
-                color: ${getColor("yellow", 600)};
+                color: ${getColor("yellow", 800)};
                 background: ${getColor("yellow", 100)};
               `;
-            case "aboutToLapse":
+            case "about to lapse":
               return css`
-                color: ${getColor("orange", 600)};
+                color: ${getColor("orange", 800)};
                 background: ${getColor("orange", 100)};
               `;
             default:
               return css`
-                color: ${getColor("blue", 600)};
+                color: ${getColor("blue", 800)};
                 background: ${getColor("blue", 100)};
               `;
           }

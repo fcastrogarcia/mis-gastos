@@ -50,7 +50,7 @@ const Menu = styled.ul`
 const Option = styled.li`
   font-size: 13px;
   padding: 12px 14px;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.gray[800]};
 

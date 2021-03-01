@@ -19,6 +19,6 @@ export const getStatus = dueDate => {
   const isAboutToLapse = !isDue && currentDate > dueDate - ABOUT_TO_LAPSE_TIME;
 
   if (isDue) return "due";
-  if (isAboutToLapse) return "aboutToLapse";
+  if (isAboutToLapse) return "about to lapse";
   else return "pending";
 };

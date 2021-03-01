@@ -16,7 +16,8 @@ body {
 
 body,
 button {
-  font-family: "Manrope", sans-serif;
+  /* font-family: "Manrope", sans-serif; */
+  font-family: 'Inter', sans-serif;
   color: initial;
 }
 

@@ -12,7 +12,7 @@ const BaseButton = styled.button`
   padding: 10px 16px;
   border-radius: 4px;
   background: ${({ theme }) => theme.colors.indigo[100]};
-  font-weight: 600;
+  font-weight: 500;
   color: ${({ theme }) => theme.colors.indigo[800]};
   transition: all 0.1s ease-in-out;
   display: flex;
