@@ -16,7 +16,6 @@ body {
 
 body,
 button {
-  /* font-family: "Manrope", sans-serif; */
   font-family: 'Inter', sans-serif;
   color: initial;
 }
@@ -40,6 +39,9 @@ button {
   outline: none;
   cursor: pointer;
 }
+
+
+
 `;
 
 export default GlobalStyle;
