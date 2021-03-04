@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { BaseLayout } from "components/Layout";
 
-const Layout = styled.div.attrs({ className: "layout" })`
+const Layout = styled(BaseLayout)`
   display: flex;
   position: relative;
   justify-content: center;
