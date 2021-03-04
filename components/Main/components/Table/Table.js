@@ -1,5 +1,5 @@
 import styles from "./styles";
-import { useItemsStateContext } from "context/items";
+import { useItemsState } from "context/items";
 import format from "date-fns/format";
 import NumberFormat from "react-number-format";
 
@@ -8,8 +8,7 @@ const table = {
 };
 
 const Table = () => {
-  const { items = [] } = useItemsStateContext();
-  console.log({ items });
+  const { currentItems: items = [] } = useItemsState();
 
   return (
     <styles.Table>

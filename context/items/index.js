@@ -1,16 +1,22 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { node } from "prop-types";
 import { getItems } from "./operations";
+import { useCalendarState } from "context/calendar";
+import { getCurrentItems } from "utils/time";
 
 const ItemsStateContext = createContext();
 const ItemsDispatchContext = createContext();
 
 const initialState = {
-  items: [],
+  rawItems: [],
+  currentItems: [],
 };
 
 export default function ItemsProvider({ children }) {
   const [items, setItems] = useState(initialState);
+
+  const { selectedPeriod } = useCalendarState();
+
   //   const [, forceUpdate] = useState()
 
   useEffect(() => {
@@ -18,12 +24,23 @@ export default function ItemsProvider({ children }) {
       const { data = {} } = await getItems();
 
       if (data && data.items) {
-        setItems(prev => ({ ...prev, items: data.items }));
+        setItems(prev => ({
+          ...prev,
+          rawItems: data.items,
+          currentItems: getCurrentItems(data.items, selectedPeriod),
+        }));
       }
     };
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    setItems(prev => ({
+      ...prev,
+      currentItems: getCurrentItems(items.rawItems, selectedPeriod),
+    }));
+  }, [selectedPeriod]);
 
   return (
     <ItemsStateContext.Provider value={items}>
@@ -38,7 +55,7 @@ ItemsProvider.propTypes = {
   children: node.isRequired,
 };
 
-export const useItemsStateContext = () => {
+export const useItemsState = () => {
   const context = useContext(ItemsStateContext);
 
   if (context === undefined)
@@ -47,7 +64,7 @@ export const useItemsStateContext = () => {
   return context;
 };
 
-export const useItemsDispatchContext = () => {
+export const useItemsDispatch = () => {
   const context = useContext(ItemsDispatchContext);
 
   if (context === undefined)
