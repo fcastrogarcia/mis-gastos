@@ -41,7 +41,6 @@ button {
 }
 
 
-
 `;
 
 export default GlobalStyle;

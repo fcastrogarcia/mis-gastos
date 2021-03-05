@@ -1,3 +1,5 @@
+import { createMuiTheme } from "@material-ui/core/styles";
+
 const colors = {
   basic: {
     white: "#fff",
@@ -88,4 +90,10 @@ const shadows = {
   vercel: "0 4px 8px rgb(0 0 0 / 12%)",
 };
 
-export default { colors, shadows };
+export const muiTheme = createMuiTheme({
+  MuiCircularProgress: {
+    colorPrimary: colors.indigo[800],
+  },
+});
+
+export const styledTheme = { colors, shadows };

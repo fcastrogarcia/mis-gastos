@@ -1,4 +1,6 @@
 import styled, { css } from "styled-components";
+import CircularProgress from "@material-ui/core/CircularProgress";
+
 const getColor = (color, variant) => ({ theme }) => theme.colors[color][variant];
 
 const Table = styled.table`
@@ -49,8 +51,8 @@ const Cell = styled.td`
   height: 70px;
   padding-left: 24px;
   color: ${getColor("gray", 700)};
-  font-weight: 400;
-  font-size: 14px;
+  font-weight: 500;
+  font-size: 15px;
   line-height: 1.25rem;
 
   & .table-text {
@@ -66,7 +68,6 @@ const Cell = styled.td`
 
   &.table-cell {
     &--amount {
-      font-size: 14px;
       font-weight: 500;
     }
 
@@ -114,6 +115,17 @@ const Cell = styled.td`
   }
 `;
 
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+`;
+
+const Loader = styled(CircularProgress)`
+  color: ${getColor("indigo", 800)};
+`;
+
 const Body = styled.tbody``;
 
 export default {
@@ -123,4 +135,6 @@ export default {
   Row,
   Cell,
   Body,
+  Loader,
+  Container,
 };

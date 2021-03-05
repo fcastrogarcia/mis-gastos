@@ -10,10 +10,11 @@ const ItemsDispatchContext = createContext();
 const initialState = {
   rawItems: [],
   currentItems: [],
+  loading: true,
 };
 
 export default function ItemsProvider({ children }) {
-  const [items, setItems] = useState(initialState);
+  const [data, setData] = useState(initialState);
 
   const { selectedPeriod } = useCalendarState();
 
@@ -21,14 +22,22 @@ export default function ItemsProvider({ children }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data = {} } = await getItems();
+      setData(prev => ({ ...prev, loading: true }));
 
-      if (data && data.items) {
-        setItems(prev => ({
-          ...prev,
-          rawItems: data.items,
-          currentItems: getCurrentItems(data.items, selectedPeriod),
-        }));
+      try {
+        const { data = {} } = await getItems();
+
+        if (data && data.items) {
+          setData(prev => ({
+            ...prev,
+            rawItems: data.items,
+            currentItems: getCurrentItems(data.items, selectedPeriod),
+            loading: false,
+          }));
+        }
+      } catch (error) {
+        console.error(error);
+        setData(prev => ({ ...prev, loading: false }));
       }
     };
 
@@ -36,15 +45,15 @@ export default function ItemsProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    setItems(prev => ({
+    setData(prev => ({
       ...prev,
-      currentItems: getCurrentItems(items.rawItems, selectedPeriod),
+      currentItems: getCurrentItems(data.rawItems, selectedPeriod),
     }));
   }, [selectedPeriod]);
 
   return (
-    <ItemsStateContext.Provider value={items}>
-      <ItemsDispatchContext.Provider value={setItems}>
+    <ItemsStateContext.Provider value={data}>
+      <ItemsDispatchContext.Provider value={setData}>
         {children}
       </ItemsDispatchContext.Provider>
     </ItemsStateContext.Provider>

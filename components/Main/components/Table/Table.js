@@ -2,13 +2,28 @@ import styles from "./styles";
 import { useItemsState } from "context/items";
 import format from "date-fns/format";
 import NumberFormat from "react-number-format";
+import EmptyItems from "../EmptyItems";
 
 const table = {
   header: ["name", "amount", "date", "status"],
 };
 
 const Table = () => {
-  const { currentItems: items = [] } = useItemsState();
+  const { currentItems: items = [], loading } = useItemsState();
+
+  if (loading)
+    return (
+      <styles.Container>
+        <styles.Loader />
+      </styles.Container>
+    );
+
+  if (!loading && !items.length)
+    return (
+      <styles.Container>
+        <EmptyItems />
+      </styles.Container>
+    );
 
   return (
     <styles.Table>

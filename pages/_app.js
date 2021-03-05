@@ -1,16 +1,30 @@
+import { useEffect } from "react";
 import "../styles/index.scss";
 import { Provider } from "next-auth/client";
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider as StyledProvider } from "styled-components";
+import { ThemeProvider as MuiProvider } from "@material-ui/core/styles";
+import { styledTheme, muiTheme } from "styles/theme";
 import GlobalStyle from "styles/global";
-import theme from "styles/theme";
+import { StylesProvider } from "@material-ui/core/styles";
 
 function App({ Component, pageProps }) {
+  useEffect(() => {
+    const jssStyles = document.querySelector("#jss-server-side");
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
+  }, []);
+
   return (
     <Provider session={pageProps.session}>
       <GlobalStyle />
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <StyledProvider theme={styledTheme}>
+        <MuiProvider theme={muiTheme}>
+          <StylesProvider injectFirst>
+            <Component {...pageProps} />
+          </StylesProvider>
+        </MuiProvider>
+      </StyledProvider>
     </Provider>
   );
 }
