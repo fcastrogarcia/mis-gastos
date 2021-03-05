@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { elementType, object } from "prop-types";
 import "../styles/index.scss";
 import { Provider } from "next-auth/client";
 import { ThemeProvider as StyledProvider } from "styled-components";
@@ -30,3 +31,8 @@ function App({ Component, pageProps }) {
 }
 
 export default App;
+
+App.propTypes = {
+  Component: elementType.isRequired,
+  pageProps: object.isRequired,
+};

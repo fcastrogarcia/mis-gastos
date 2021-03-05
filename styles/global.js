@@ -39,8 +39,6 @@ button {
   outline: none;
   cursor: pointer;
 }
-
-
 `;
 
 export default GlobalStyle;

@@ -91,8 +91,12 @@ const shadows = {
 };
 
 export const muiTheme = createMuiTheme({
-  MuiCircularProgress: {
-    colorPrimary: colors.indigo[800],
+  palette: {
+    primary: {
+      light: colors.indigo[600],
+      main: colors.indigo[700],
+      dark: colors.indigo[800],
+    },
   },
 });
 

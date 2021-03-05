@@ -122,9 +122,7 @@ const Container = styled.div`
   height: 40vh;
 `;
 
-const Loader = styled(CircularProgress)`
-  color: ${getColor("indigo", 800)};
-`;
+const Loader = styled(CircularProgress)``;
 
 const Body = styled.tbody``;
 
