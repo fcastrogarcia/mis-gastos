@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
-const getColor = (color, variant) => ({ theme }) => theme.colors[color][variant];
+import { getColor } from "styles/utils";
 
 const Table = styled.table`
   width: 100%;

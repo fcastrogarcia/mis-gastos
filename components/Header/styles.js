@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import BaseLogo from "components/Logo";
+import { getColor } from "styles/utils";
 
 const Header = styled.header`
   display: grid;
@@ -8,19 +9,19 @@ const Header = styled.header`
   position: absolute;
   left: 0;
   top: 0;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.gray[200]};
+  border-bottom: 1px solid ${getColor("gray", 200)};
   padding: 10px;
   align-items: center;
   height: 70px;
   box-sizing: border-box;
-  background: ${({ theme }) => theme.colors.basic.white};
+  background: ${getColor("basic", "white")};
   z-index: 99;
   width: calc(100% - 400px);
 `;
 
 const Logo = styled(BaseLogo).attrs({ className: "flex" })`
   && {
-    background: ${({ theme }) => theme.colors.basic.white};
+    background: ${getColor("basic", "white")};
     box-shadow: none;
     padding: 0 8px;
   }

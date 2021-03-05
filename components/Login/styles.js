@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { BaseLayout } from "components/Layout";
+import { getColor } from "styles/utils";
 
 const Layout = styled(BaseLayout)`
   display: flex;
   position: relative;
   justify-content: center;
-  background: ${({ theme }) => theme.colors.gray[900]};
+  background: ${getColor("gray", 900)};
 `;
 
 const Container = styled.div.attrs({ className: "flex" })`
@@ -33,15 +34,16 @@ const Header = styled.header`
 `;
 
 const HeaderTitle = styled.h2`
-  color: ${({ theme }) => theme.colors.gray[400]};
+  color: ${getColor("basic", "fafafa")};
   opacity: 1;
   cursor: default;
+  font-weight: 600;
 `;
 
 const Hero = styled.div`
   display: flex;
   justify-content: center;
-  background: ${({ theme }) => theme.colors.gray[900]};
+  background: ${getColor("gray", 900)};
   position: absolute;
   left: 400px;
   height: 680px;

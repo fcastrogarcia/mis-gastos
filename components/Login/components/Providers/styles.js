@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Google as GoogleIcon } from "@styled-icons/boxicons-logos/Google";
+import { getColor } from "styles/utils";
 
 const FlexContainer = styled.div.attrs({ className: "flex" })``;
 
@@ -14,19 +14,20 @@ const Providers = styled(FlexContainer)`
   padding: 34px;
   box-shadow: ${({ theme }) => theme.shadows.vercel};
   border-radius: 6px;
-  background: ${({ theme }) => theme.colors.gray[800]};
+  background: ${getColor("gray", 800)};
 `;
 
 const ProvidersTitle = styled.h2`
-  color: ${({ theme }) => theme.colors.gray[300]};
+  color: ${getColor("basic", "fafafa")};
   text-align: center;
-  font-size: 16px;
-  letter-spacing: 0.5px;
+  font-size: 18px;
+  letter-spacing: 0.25px;
   margin-bottom: 30px;
+  font-weight: 600;
 `;
 
-const Google = styled(GoogleIcon)`
-  padding-left: 5px;
+const Google = styled.div`
+  padding-left: 10px;
 `;
 
 export default { Container, Providers, ProvidersTitle, Google };
