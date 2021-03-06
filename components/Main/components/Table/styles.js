@@ -9,20 +9,9 @@ const Table = styled.table`
   box-shadow: ${({ theme }) => theme.shadows.basic};
   padding: 16px;
   border-collapse: collapse;
-  /* overflow: hidden; */
 `;
 
 const Row = styled.tr`
-  /* transition: all 0.15s ease-in-out;
-  border: 1px solid transparent;
-  
-  &:hover {
-    box-shadow: ${({ theme }) => theme.shadows.lg};
-    border: 1px solid ${getColor("indigo", 700)};
-  } */
-  /* &:nth-child(even) {
-    background: ${getColor("gray", 100)};
-  } */
   border: 1px solid ${getColor("gray", 200)};
 `;
 
@@ -30,9 +19,6 @@ const Header = styled.thead`
   color: ${({ theme }) => theme.colors.gray[600]};
   padding: 16px;
   font-size: 15px;
-  /* font-size: 13px; */
-  /* letter-spacing: 0.05em; */
-  /* text-transform: uppercase; */
   text-transform: capitalize;
   background: ${getColor("gray", 100)};
   border-bottom: 1px solid ${getColor("gray", 300)};
@@ -47,7 +33,7 @@ const HeaderCell = styled.th`
 `;
 
 const Cell = styled.td`
-  height: 70px;
+  height: 85px;
   padding-left: 24px;
   color: ${getColor("gray", 700)};
   font-weight: 500;
@@ -66,19 +52,21 @@ const Cell = styled.td`
   }
 
   &.table-cell {
+    &--date {
+      color: ${getColor("gray", 600)};
+    }
     &--amount {
+      font-size: 17px;
       font-weight: 500;
     }
 
     &--status {
       text-transform: capitalize;
-      font-size: 14px;
 
       & span {
         border-radius: 50px;
         padding: 4px 8px;
         font-weight: 600;
-        font-size: 0.8rem;
 
         ${({ status }) => {
           switch (status) {

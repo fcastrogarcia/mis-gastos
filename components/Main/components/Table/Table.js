@@ -5,7 +5,7 @@ import NumberFormat from "react-number-format";
 import EmptyItems from "../EmptyItems";
 
 const table = {
-  header: ["name", "amount", "date", "status"],
+  header: ["date", "name", "amount", "status"],
 };
 
 const Table = () => {
@@ -48,6 +48,9 @@ const Table = () => {
 
           return (
             <styles.Row key={index.toString()}>
+              <styles.Cell className="table-cell--date">
+                {format(new Date(type === "expense" ? created_at : due_date), "MMM d")}
+              </styles.Cell>
               <styles.Cell>
                 <p className="table-text--name">{name}</p>
                 <p className="table-text--provider">{provider}</p>
@@ -59,12 +62,6 @@ const Table = () => {
                   thousandSeparator={true}
                   prefix={"$"}
                 />
-              </styles.Cell>
-              <styles.Cell>
-                {format(
-                  new Date(type === "expense" ? created_at : due_date),
-                  "MM-dd-yyyy"
-                )}
               </styles.Cell>
               <styles.Cell className="table-cell--status" status={current_status}>
                 <span>{current_status}</span>
