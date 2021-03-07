@@ -4,7 +4,7 @@ import format from "date-fns/format";
 
 const Heading = styled.h2`
   font-size: 28px;
-  color: ${({ theme }) => theme.colors.gray[800]};
+  color: ${({ theme }) => theme.colors.gray[900]};
   font-weight: 600;
 `;
 
