@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 const Container = styled.div`
   position: absolute;
-  top: 70px;
+  top: 65px;
+  left: 50%;
+  transform: translateX(-50%);
   background: ${({ theme }) => theme.colors.basic.white};
   box-shadow: ${({ theme }) => theme.shadows.vercel};
   width: 225px;

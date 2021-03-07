@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Header from "components/Header";
-import Sidebar from "components/Sidebar";
 import { node } from "prop-types";
 
 export const BaseLayout = styled.div`
@@ -14,14 +13,12 @@ export const BaseLayout = styled.div`
 
 const LayoutComponent = styled(BaseLayout)`
   padding-top: 70px;
-  width: calc(100% - 400px);
 `;
 
 const Layout = ({ children, ...rest }) => {
   return (
     <LayoutComponent {...rest}>
       <Header />
-      <Sidebar />
       {children}
     </LayoutComponent>
   );

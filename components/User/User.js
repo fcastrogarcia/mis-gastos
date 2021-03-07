@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useSession } from "next-auth/client";
 import styles from "./styles";
-import Menu from "../Menu";
+import Menu from "./components/Menu";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
-const UserBadge = () => {
+const User = () => {
   const [open, setOpen] = useState(false);
   const [session] = useSession();
 
@@ -30,4 +30,4 @@ const UserBadge = () => {
   );
 };
 
-export default UserBadge;
+export default User;

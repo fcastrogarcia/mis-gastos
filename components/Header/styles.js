@@ -4,19 +4,17 @@ import { getColor } from "styles/utils";
 
 const Header = styled.header`
   display: grid;
-  grid-template-columns: auto 1fr;
-  justify-content: center;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
   position: absolute;
   left: 0;
   top: 0;
-  border-bottom: 1px solid ${getColor("gray", 200)};
-  padding: 10px;
   align-items: center;
-  height: 70px;
+  padding: 10px;
   box-sizing: border-box;
   background: ${getColor("basic", "white")};
   z-index: 99;
-  width: calc(100% - 400px);
+  width: 100%;
 `;
 
 const Logo = styled(BaseLogo).attrs({ className: "flex" })`
