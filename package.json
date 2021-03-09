@@ -22,7 +22,8 @@
     "react-number-format": "^4.4.4",
     "sass": "^1.32.6",
     "styled-components": "^5.2.1",
-    "styled-icons": "^10.28.0"
+    "styled-icons": "^10.28.0",
+    "swr": "^0.4.2"
   },
   "license": "MIT",
   "devDependencies": {
