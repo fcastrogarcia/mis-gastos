@@ -4,7 +4,6 @@ import { KeyboardArrowDown } from "@styled-icons/material-rounded/KeyboardArrowD
 
 const Container = styled.div`
   display: grid;
-  /* width: 48px; */
   border-radius: 4px;
   position: relative;
 `;
@@ -43,7 +42,6 @@ const Menu = styled.ul`
   width: 150px;
   background: ${({ theme }) => theme.colors.basic.white};
   box-shadow: ${({ theme }) => theme.shadows.vercel};
-  /* padding: 8px 16px; */
   border-radius: 4px;
   overflow: hidden;
 `;
@@ -61,8 +59,9 @@ const Option = styled.li`
 `;
 
 const Plus = styled(PlusComponent).attrs({ size: 20 })`
-  padding-left: 5px;
+  padding-right: 5px;
 `;
+
 const ArrowDown = styled(KeyboardArrowDown).attrs({ size: 20 })``;
 
 export default { Container, Add, Dropdown, Menu, Option, Plus, ArrowDown };

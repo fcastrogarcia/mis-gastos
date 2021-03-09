@@ -27,8 +27,8 @@ const AddItem = () => {
     <styles.Container>
       <Link href="/main/create">
         <styles.Add>
-          New Item
           <styles.Plus />
+          New Item
         </styles.Add>
       </Link>
       {/* <ClickAwayListener onClickAway={handleClickAway}>
