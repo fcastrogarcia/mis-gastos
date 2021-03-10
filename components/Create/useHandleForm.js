@@ -10,20 +10,26 @@ const initialState = {
 };
 
 const useHandleForm = () => {
-  const [data, setData] = useState(initialState);
+  const [values, setValues] = useState(initialState);
 
   const router = useRouter();
   const { query: { type } = {} } = router;
 
-  const handleClick = e => {
-    setData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleChange = e => {
+    setValues(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    console.log("submitaaa");
   };
 
   useEffect(() => {
-    if (type) setData(prev => ({ ...prev, type }));
+    if (type) setValues(prev => ({ ...prev, type }));
   }, [type]);
 
-  return { data, handleClick };
+  return { values, handleChange, handleSubmit };
 };
 
 export default useHandleForm;

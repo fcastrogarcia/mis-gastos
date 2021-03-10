@@ -20,13 +20,13 @@ function App({ Component, pageProps }) {
   return (
     <Provider session={pageProps.session}>
       <StyledProvider theme={styledTheme}>
-        <GlobalStyle />
-        <CommonStyles />
-        <MuiProvider theme={muiTheme}>
-          <StylesProvider injectFirst>
+        <StylesProvider injectFirst>
+          <MuiProvider theme={muiTheme}>
+            <CommonStyles />
+            <GlobalStyle />
             <Component {...pageProps} />
-          </StylesProvider>
-        </MuiProvider>
+          </MuiProvider>
+        </StylesProvider>
       </StyledProvider>
     </Provider>
   );

@@ -99,6 +99,21 @@ export const muiTheme = createMuiTheme({
       dark: colors.indigo[800],
     },
   },
+  typography: {
+    fontFamily: ['"Inter"', "sans-serif"].join(","),
+  },
+  overrides: {
+    MuiOutlinedInput: {
+      root: {
+        borderRadius: 8,
+      },
+    },
+    MuiInputLabel: {
+      root: {
+        textTransform: "capitalize",
+      },
+    },
+  },
 });
 
 export const styledTheme = { colors, shadows };

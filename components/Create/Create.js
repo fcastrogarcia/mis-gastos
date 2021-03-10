@@ -1,31 +1,16 @@
 import SectionTitle from "components/SectionTitle";
-import Switch from "components/Switch";
 import useHandleForm from "./useHandleForm";
 import styles from "./styles";
-
-const typeOptions = [
-  { value: "payment", label: "payment" },
-  { value: "expense", label: "expense" },
-];
+import Form from "components/Form";
 
 const Create = () => {
-  const { data, handleClick } = useHandleForm();
-
-  console.log({ data });
+  const { values, handleChange, handleSubmit } = useHandleForm();
 
   return (
     <div className="container container--1280">
       <SectionTitle text="Add a new item" />
       <styles.Content>
-        <form>
-          <fieldset>
-            <Switch
-              options={typeOptions}
-              handleClick={handleClick}
-              selected={data.type}
-            />
-          </fieldset>
-        </form>
+        <Form values={values} handleChange={handleChange} handleSubmit={handleSubmit} />
       </styles.Content>
     </div>
   );
