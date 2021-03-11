@@ -12,6 +12,7 @@ const ExpenseSchema = new Schema({
   name: { type: String, required: true },
   amount: Number,
   comment: String,
+  date: Date,
   provider: String,
   period: { type: Date },
   created_at: { type: Date, default: Date.now },

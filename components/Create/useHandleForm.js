@@ -3,10 +3,10 @@ import { useRouter } from "next/router";
 
 const initialState = {
   type: "payment",
-  name: null,
+  name: "",
   provider: null,
   amount: null,
-  due_date: null,
+  date: null,
 };
 
 const useHandleForm = () => {
@@ -29,7 +29,7 @@ const useHandleForm = () => {
     if (type) setValues(prev => ({ ...prev, type }));
   }, [type]);
 
-  return { values, handleChange, handleSubmit };
+  return { values, handleChange, handleSubmit, setValues };
 };
 
 export default useHandleForm;

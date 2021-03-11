@@ -1,6 +1,6 @@
 import { getSession } from "next-auth/client";
 import dbConnect from "utils/dbConnect";
-import { getItems, createItem } from "db/items";
+import { getItems, createItem } from "lib/items";
 
 export default async (req, res) => {
   const session = await getSession({ req });

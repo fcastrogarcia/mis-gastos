@@ -1,9 +1,14 @@
 import Switch from "components/Switch";
 import { array, shape, func } from "prop-types";
+import DatePicker from "components/DatePicker";
 import styles from "./styles";
+import NumberFormat from "react-number-format";
 
-const Form = ({ switchOptions, values, handleChange, handleSubmit }) => {
-  const { type, name } = values;
+const Form = ({ switchOptions, values, handleChange, handleSubmit, setValues }) => {
+  const { type, name, date, amount, provider } = values;
+  const isPayment = type === "payment";
+  const handleDateChange = date => setValues(prev => ({ ...prev, date }));
+
   return (
     <styles.Form id="new-item" onSubmit={handleSubmit}>
       {switchOptions && (
@@ -16,12 +21,26 @@ const Form = ({ switchOptions, values, handleChange, handleSubmit }) => {
         value={name}
         onChange={handleChange}
         type="text"
+        name="name"
       />
       <styles.Fieldset
         label={`Business`}
-        value={name}
+        value={provider}
         onChange={handleChange}
         type="text"
+        name="provider"
+      />
+      <NumberFormat
+        value={amount}
+        thousandSeparator={true}
+        onChange={handleChange}
+        prefix={"$"}
+        customInput={styles.AmountFieldset}
+      />
+      <DatePicker
+        value={date}
+        handleChange={handleDateChange}
+        label={isPayment ? "Due Date" : "Date"}
       />
     </styles.Form>
   );
@@ -34,6 +53,7 @@ Form.propTypes = {
   values: shape({}).isRequired,
   handleSubmit: func,
   handleChange: func,
+  setValues: func,
 };
 
 Form.defaultProps = {
@@ -43,4 +63,5 @@ Form.defaultProps = {
   ],
   handleSubmit: () => {},
   handleChange: () => {},
+  setValues: () => {},
 };

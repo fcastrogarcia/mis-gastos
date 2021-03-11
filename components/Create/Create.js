@@ -4,13 +4,18 @@ import styles from "./styles";
 import Form from "components/Form";
 
 const Create = () => {
-  const { values, handleChange, handleSubmit } = useHandleForm();
+  const { values, handleChange, handleSubmit, setValues } = useHandleForm();
 
   return (
     <div className="container container--1280">
       <SectionTitle text="Add a new item" />
       <styles.Content>
-        <Form values={values} handleChange={handleChange} handleSubmit={handleSubmit} />
+        <Form
+          values={values}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          setValues={setValues}
+        />
       </styles.Content>
     </div>
   );
