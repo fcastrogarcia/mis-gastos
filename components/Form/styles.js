@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import MuiTextField from "@material-ui/core/TextField";
 import BaseButton from "components/Button";
-import MuiCheckbox from "@material-ui/core/Checkbox";
+// import { getColor } from "styles/utils";
 
 const Form = styled.form`
   display: grid;
@@ -23,22 +23,13 @@ const AmountFieldset = styled(Fieldset).attrs({ label: "Amount", name: "amount" 
 
 const Submit = styled.div`
   grid-column: 2 / 3;
+  grid-row: 4 / 5;
   display: flex;
   justify-content: flex-end;
 `;
 
 const Button = styled(BaseButton)`
   width: 120px;
-`;
-
-const Checkbox = styled(MuiCheckbox)``;
-
-const CheckboxContainer = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
-  position: relative;
-  top: 12px;
 `;
 
 export default {
@@ -48,6 +39,4 @@ export default {
   AmountFieldset,
   Submit,
   Button,
-  Checkbox,
-  CheckboxContainer,
 };

@@ -1,13 +1,13 @@
 import Switch from "components/Switch";
-import { array, shape, func } from "prop-types";
+import { array, shape, func, bool } from "prop-types";
 import DatePicker from "components/DatePicker";
 import styles from "./styles";
 import NumberFormat from "react-number-format";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+// import FormControlLabel from "@material-ui/core/FormControlLabel";
+import SplitButton from "./components/SplitButton";
 
-const Form = ({ switchOptions, values, handleChange, handleSubmit }) => {
+const Form = ({ switchOptions, values, handleChange, handleSubmit, isPayment }) => {
   const { type, name, date, amount, provider, details, save_as_template } = values;
-  const isPayment = type === "payment";
 
   return (
     <styles.Form id="new-item" onSubmit={handleSubmit}>
@@ -43,20 +43,6 @@ const Form = ({ switchOptions, values, handleChange, handleSubmit }) => {
           handleChange={handleChange("date")}
           label={isPayment ? "Due Date" : "Date"}
         />
-        <styles.CheckboxContainer>
-          <FormControlLabel
-            control={
-              <styles.Checkbox
-                checked={save_as_template}
-                value={save_as_template}
-                onChange={handleChange("save_as_template")}
-                name="save_as_template"
-                color="primary"
-              />
-            }
-            label="Save As Template"
-          />
-        </styles.CheckboxContainer>
         <styles.Fieldset
           label="Details"
           value={details}
@@ -66,7 +52,10 @@ const Form = ({ switchOptions, values, handleChange, handleSubmit }) => {
           multiline
         />
         <styles.Submit>
-          <styles.Button>Save</styles.Button>
+          <SplitButton
+            handleCheckbox={handleChange("save_as_template")}
+            checked={save_as_template}
+          />
         </styles.Submit>
       </styles.Fields>
     </styles.Form>
@@ -80,7 +69,7 @@ Form.propTypes = {
   values: shape({}).isRequired,
   handleSubmit: func,
   handleChange: func,
-  setValues: func,
+  isPayment: bool.isRequired,
 };
 
 Form.defaultProps = {
@@ -90,5 +79,4 @@ Form.defaultProps = {
   ],
   handleSubmit: () => {},
   handleChange: () => {},
-  setValues: () => {},
 };

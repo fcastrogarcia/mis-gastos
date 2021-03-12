@@ -108,10 +108,39 @@ export const muiTheme = createMuiTheme({
         borderRadius: 8,
       },
     },
+    MuiButtonGroup: {
+      contained: {
+        boxShadow: "none",
+        "& :hover": {
+          boxShadow: "none",
+        },
+      },
+    },
+    MuiButton: {
+      root: {
+        fontSize: 15,
+        fontWeight: 400,
+        textTransform: "capitalize",
+        height: 40,
+      },
+    },
     MuiInputLabel: {
       root: {
         textTransform: "capitalize",
       },
+    },
+    MuiFormControlLabel: {
+      label: {
+        color: colors.gray[800],
+      },
+    },
+  },
+  props: {
+    MuiButtonGroup: {
+      disableRipple: true,
+    },
+    MuiButtonBase: {
+      disableRipple: true,
     },
   },
 });
