@@ -16,32 +16,37 @@ const Form = ({ switchOptions, values, handleChange, handleSubmit, setValues }) 
           <Switch options={switchOptions} handleClick={handleChange} selected={type} />
         </fieldset>
       )}
-      <styles.Fieldset
-        label={`${type} name`}
-        value={name}
-        onChange={handleChange}
-        type="text"
-        name="name"
-      />
-      <styles.Fieldset
-        label={`Business`}
-        value={provider}
-        onChange={handleChange}
-        type="text"
-        name="provider"
-      />
-      <NumberFormat
-        value={amount}
-        thousandSeparator={true}
-        onChange={handleChange}
-        prefix={"$"}
-        customInput={styles.AmountFieldset}
-      />
-      <DatePicker
-        value={date}
-        handleChange={handleDateChange}
-        label={isPayment ? "Due Date" : "Date"}
-      />
+      <styles.Fields>
+        <styles.Fieldset
+          label={`${type} name`}
+          value={name}
+          onChange={handleChange}
+          type="text"
+          name="name"
+        />
+        <styles.Fieldset
+          label={`Business`}
+          value={provider}
+          onChange={handleChange}
+          type="text"
+          name="provider"
+        />
+        <NumberFormat
+          value={amount}
+          thousandSeparator={true}
+          onChange={handleChange}
+          prefix={"$"}
+          customInput={styles.AmountFieldset}
+        />
+        <DatePicker
+          value={date}
+          handleChange={handleDateChange}
+          label={isPayment ? "Due Date" : "Date"}
+        />
+        <styles.Submit>
+          <styles.Button>Save</styles.Button>
+        </styles.Submit>
+      </styles.Fields>
     </styles.Form>
   );
 };
