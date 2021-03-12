@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import { useReducer } from "react";
 
 const initialState = {
   type: "payment",
@@ -7,29 +6,40 @@ const initialState = {
   provider: null,
   amount: null,
   date: null,
+  details: "",
+  save_as_template: false,
+};
+
+const reducer = (state, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case "save_as_template":
+      return { ...state, [type]: payload.target.checked };
+    case "date":
+      return { ...state, [type]: payload };
+    default:
+      return { ...state, [payload.target.name]: payload.target.value };
+  }
 };
 
 const useHandleForm = () => {
-  const [values, setValues] = useState(initialState);
+  const [values, dispatch] = useReducer(reducer, initialState);
 
-  const router = useRouter();
-  const { query: { type } = {} } = router;
-
-  const handleChange = e => {
-    setValues(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleChange = type => e => {
+    dispatch({
+      type,
+      payload: e,
+    });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    console.log("submitaaa");
+    console.log({ values });
   };
 
-  useEffect(() => {
-    if (type) setValues(prev => ({ ...prev, type }));
-  }, [type]);
-
-  return { values, handleChange, handleSubmit, setValues };
+  return { values, handleChange, handleSubmit };
 };
 
 export default useHandleForm;

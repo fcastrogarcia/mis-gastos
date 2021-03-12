@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import MuiTextField from "@material-ui/core/TextField";
 import BaseButton from "components/Button";
+import MuiCheckbox from "@material-ui/core/Checkbox";
 
 const Form = styled.form`
   display: grid;
@@ -18,7 +19,7 @@ const Fields = styled.div`
   grid-gap: 48px;
 `;
 
-const AmountFieldset = styled(Fieldset).attrs({ label: "Amount" })``;
+const AmountFieldset = styled(Fieldset).attrs({ label: "Amount", name: "amount" })``;
 
 const Submit = styled.div`
   grid-column: 2 / 3;
@@ -30,4 +31,23 @@ const Button = styled(BaseButton)`
   width: 120px;
 `;
 
-export default { Fieldset, Fields, Form, AmountFieldset, Submit, Button };
+const Checkbox = styled(MuiCheckbox)``;
+
+const CheckboxContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  position: relative;
+  top: 12px;
+`;
+
+export default {
+  Fieldset,
+  Fields,
+  Form,
+  AmountFieldset,
+  Submit,
+  Button,
+  Checkbox,
+  CheckboxContainer,
+};
