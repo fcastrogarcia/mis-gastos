@@ -40,7 +40,6 @@ const SplitButton = ({ label, checked, checkboxKey, handleCheckbox }) => {
           size="small"
           aria-controls={open ? "save-button-menu" : undefined}
           aria-expanded={open ? "true" : undefined}
-          aria-label="select merge strategy"
           aria-haspopup="menu"
           onClick={handleToggle}
         >

@@ -1,61 +1,85 @@
 import Switch from "components/Switch";
-import { array, shape, func, bool } from "prop-types";
-import DatePicker from "components/DatePicker";
-import styles from "./styles";
+import { array, shape } from "prop-types";
 import NumberFormat from "react-number-format";
-// import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { useFormik } from "formik";
+import { validate, onSubmit } from "./utils";
+import DatePicker from "components/DatePicker";
 import SplitButton from "./components/SplitButton";
+import styles from "./styles";
 
-const Form = ({ switchOptions, values, handleChange, handleSubmit, isPayment }) => {
+const Form = ({ switchOptions, initialValues }) => {
+  const formik = useFormik({
+    initialValues,
+    validate,
+    onSubmit,
+  });
+
+  const { touched, values, handleChange, handleSubmit, setFieldValue, errors } = formik;
   const { type, name, date, amount, provider, details, save_as_template } = values;
+
+  const handleDateChange = date => setFieldValue("date", date);
+
+  const handleAmountChange = ({ floatValue }) => setFieldValue("amount", floatValue);
+
+  const getError = field => touched[field] && errors[field];
+
+  const isPayment = type === "payment";
 
   return (
     <styles.Form id="new-item" onSubmit={handleSubmit}>
       {switchOptions && (
         <fieldset>
-          <Switch options={switchOptions} handleClick={handleChange()} selected={type} />
+          <Switch options={switchOptions} handleClick={handleChange} selected={type} />
         </fieldset>
       )}
       <styles.Fields>
         <styles.Fieldset
           label={`${type} name`}
           value={name}
-          onChange={handleChange()}
+          onChange={handleChange}
           type="text"
           name="name"
+          error={Boolean(getError("name"))}
+          helperText={getError("name")}
         />
         <styles.Fieldset
-          label={`Business`}
+          label="Business"
           value={provider}
-          onChange={handleChange()}
+          onChange={handleChange}
           type="text"
           name="provider"
+          error={Boolean(getError("provider"))}
+          helperText={Boolean(getError("provider"))}
         />
         <NumberFormat
           value={amount}
           thousandSeparator={true}
-          onChange={handleChange()}
+          onValueChange={handleAmountChange}
           prefix={"$"}
           customInput={styles.AmountFieldset}
+          error={Boolean(getError("amount"))}
+          helperText={getError("amount")}
         />
         <DatePicker
           value={date}
-          handleChange={handleChange("date")}
+          handleChange={handleDateChange}
           label={isPayment ? "Due Date" : "Date"}
+          clearable
+          error={Boolean(getError("date"))}
+          helperText={getError("date")}
         />
         <styles.Fieldset
           label="Details"
           value={details}
-          onChange={handleChange()}
+          onChange={handleChange}
           type="text"
           name="details"
+          error={Boolean(getError("details"))}
+          helperText={getError("details")}
           multiline
         />
         <styles.Submit>
-          <SplitButton
-            handleCheckbox={handleChange("save_as_template")}
-            checked={save_as_template}
-          />
+          <SplitButton handleCheckbox={handleChange} checked={save_as_template} />
         </styles.Submit>
       </styles.Fields>
     </styles.Form>
@@ -66,10 +90,7 @@ export default Form;
 
 Form.propTypes = {
   switchOptions: array,
-  values: shape({}).isRequired,
-  handleSubmit: func,
-  handleChange: func,
-  isPayment: bool.isRequired,
+  initialValues: shape({}),
 };
 
 Form.defaultProps = {
@@ -77,6 +98,13 @@ Form.defaultProps = {
     { value: "payment", label: "payment" },
     { value: "expense", label: "expense" },
   ],
-  handleSubmit: () => {},
-  handleChange: () => {},
+  initialValues: {
+    type: "payment",
+    name: "",
+    provider: "",
+    amount: null,
+    date: null,
+    details: "",
+    save_as_template: false,
+  },
 };

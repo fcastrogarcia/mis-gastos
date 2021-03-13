@@ -134,6 +134,12 @@ export const muiTheme = createMuiTheme({
         color: colors.gray[800],
       },
     },
+    MuiFormHelperText: {
+      root: {
+        position: "absolute",
+        bottom: -20,
+      },
+    },
   },
   props: {
     MuiButtonGroup: {

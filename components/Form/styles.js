@@ -19,7 +19,10 @@ const Fields = styled.div`
   grid-gap: 48px;
 `;
 
-const AmountFieldset = styled(Fieldset).attrs({ label: "Amount", name: "amount" })``;
+const AmountFieldset = styled(Fieldset).attrs({
+  label: "Amount",
+  name: "amount",
+})``;
 
 const Submit = styled.div`
   grid-column: 2 / 3;
