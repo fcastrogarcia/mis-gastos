@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 
 export const validate = state => {
   const { name, amount } = state;
@@ -18,6 +18,20 @@ export const validate = state => {
   return errors;
 };
 
+const renameDateKey = (values = {}) => {
+  const { date: due_date, ...rest } = values;
+  return { ...rest, due_date };
+};
+
+const getNextValues = values => {
+  const { type } = values;
+  return type === "payment" ? renameDateKey(values) : values;
+};
+
 export const onSubmit = values => {
-  alert(JSON.stringify(values, null, 2));
+  const data = getNextValues(values);
+  axios
+    .post("/api/items", data)
+    .then(res => alert(JSON.stringify(res.data)))
+    .catch(err => console.log(err));
 };

@@ -12,11 +12,12 @@ const ExpenseSchema = new Schema({
   name: { type: String, required: true },
   amount: Number,
   comment: String,
-  date: Date,
+  date: { type: Date, default: Date.now },
   provider: String,
   period: { type: Date },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
+  save_as_template: { type: Boolean, default: false },
 });
 
 ExpenseSchema.pre("save", function (next) {

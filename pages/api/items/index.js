@@ -33,7 +33,7 @@ export default async (req, res) => {
         break;
       case "POST":
         try {
-          const items = await createItem(body);
+          const items = await createItem({ ...body, user: user.id });
 
           res.status(200).json({ items });
         } catch (err) {

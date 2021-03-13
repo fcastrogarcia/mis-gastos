@@ -20,6 +20,7 @@ const PaymentSchema = new Schema(
     comment: String,
     period: { type: Date },
     status: { is_paid: { type: Boolean, default: false }, date: Date },
+    save_as_template: { type: Boolean, default: false },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now },
   },
