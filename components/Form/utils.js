@@ -23,15 +23,12 @@ const renameDateKey = (values = {}) => {
   return { ...rest, due_date };
 };
 
-const getNextValues = values => {
-  const { type } = values;
-  return type === "payment" ? renameDateKey(values) : values;
-};
-
-export const onSubmit = values => {
-  const data = getNextValues(values);
-  axios
-    .post("/api/items", data)
-    .then(res => alert(JSON.stringify(res.data)))
-    .catch(err => console.log(err));
+export const getNextValues = values => {
+  try {
+    const { type } = values;
+    return type === "payment" ? renameDateKey(values) : values;
+  } catch (err) {
+    console.error(err);
+    return {};
+  }
 };

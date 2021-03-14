@@ -1,5 +1,6 @@
 import startOfMonth from "date-fns/startOfMonth";
 import isSameMonth from "date-fns/isSameMonth";
+import format from "date-fns/format";
 
 const ABOUT_TO_LAPSE_TIME = 3 * 24 * 60 * 60 * 1000;
 
@@ -30,4 +31,9 @@ export const getCurrentItems = (items = [], selectedPeriod) => {
   return items.filter(({ period }) => {
     return isSameMonth(new Date(period), selectedPeriod);
   });
+};
+
+export const getDate = (isPayment, due_date, date, selectedPeriod) => {
+  if (!due_date && isPayment) return format(new Date(selectedPeriod), "MMM");
+  return format(new Date(isPayment ? due_date : date), "MMM d");
 };

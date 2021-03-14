@@ -8,7 +8,7 @@ import MenuList from "@material-ui/core/MenuList";
 import { string, func, bool } from "prop-types";
 import styles from "./styles";
 
-const SplitButton = ({ label, checked, checkboxKey, handleCheckbox }) => {
+const SplitButton = ({ label, checked, checkboxKey, handleCheckbox, ...rest }) => {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
 
@@ -31,6 +31,7 @@ const SplitButton = ({ label, checked, checkboxKey, handleCheckbox }) => {
         color="primary"
         ref={anchorRef}
         aria-label="save button"
+        {...rest}
       >
         <styles.Button type="submit" onClick={handleClick}>
           {label}

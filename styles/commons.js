@@ -31,7 +31,7 @@ const Commons = createGlobalStyle`
 
   .container {
     height: 100%;
-    padding: 32px 40px;
+    padding: 48px 40px;
     box-sizing: border-box;
     
     &--with-sidebar {
