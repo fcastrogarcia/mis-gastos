@@ -1,5 +1,5 @@
 import { authenticateRoute } from "utils/auth";
-import Layout from "components/Layout";
+import { Layout } from "components/Layout";
 import CalendarProvider from "context/calendar";
 import ItemsProvider from "context/items";
 import Main from "components/Main";

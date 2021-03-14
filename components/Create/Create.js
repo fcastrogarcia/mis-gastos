@@ -1,16 +1,16 @@
 import SectionTitle from "components/SectionTitle";
 import styles from "./styles";
 import Form from "components/Form";
-import LoadingProvider from "context/loading";
+import { LoadingContainer } from "components/Layout";
 
 const Create = () => {
   return (
-    <LoadingProvider>
+    <LoadingContainer className="container--1280">
       <SectionTitle text="Add a new item" />
       <styles.Content>
         <Form />
       </styles.Content>
-    </LoadingProvider>
+    </LoadingContainer>
   );
 };
 

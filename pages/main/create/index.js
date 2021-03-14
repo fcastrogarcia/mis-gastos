@@ -1,10 +1,13 @@
 import Create from "components/Create";
-import Layout from "components/Layout";
+import { Layout } from "components/Layout";
+import LoadingProvider from "context/loading";
 
 const CreatePage = () => {
   return (
     <Layout>
-      <Create />
+      <LoadingProvider>
+        <Create />
+      </LoadingProvider>
     </Layout>
   );
 };

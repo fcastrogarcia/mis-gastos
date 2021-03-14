@@ -7,7 +7,6 @@ export const BaseLayout = styled.div`
   max-width: 100%;
   min-height: 100vh;
   max-height: 100%;
-  height: 100vh;
   box-sizing: border-box;
 `;
 
@@ -15,7 +14,7 @@ const LayoutComponent = styled(BaseLayout)`
   padding-top: 70px;
 `;
 
-const Layout = ({ children, ...rest }) => {
+export const Layout = ({ children, ...rest }) => {
   return (
     <LayoutComponent {...rest}>
       <Header />
@@ -23,8 +22,6 @@ const Layout = ({ children, ...rest }) => {
     </LayoutComponent>
   );
 };
-
-export default Layout;
 
 Layout.propTypes = {
   children: node.isRequired,
