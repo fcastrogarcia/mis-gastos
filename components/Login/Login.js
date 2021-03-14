@@ -1,4 +1,3 @@
-import cx from "classnames";
 import Image from "next/image";
 import styles from "./styles.js";
 import { authenticateRoute } from "utils/auth";

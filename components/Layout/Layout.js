@@ -8,6 +8,8 @@ export const BaseLayout = styled.div`
   min-height: 100vh;
   max-height: 100%;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 `;
 
 const LayoutComponent = styled(BaseLayout)`

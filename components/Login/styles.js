@@ -9,23 +9,18 @@ const Layout = styled(BaseLayout)`
   background: ${getColor("gray", 900)};
 `;
 
-const Container = styled.div.attrs({ className: "flex" })`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  max-width: 1280px;
-`;
+const Container = styled.div.attrs({ className: "flex container container--1280" })``;
 
 const Content = styled.div.attrs({ className: "flex" })`
   position: relative;
   width: 100%;
-  height: 100%;
 `;
 
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
-  position: absolute;
+  align-items: center;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
