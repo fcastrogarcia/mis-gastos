@@ -11,7 +11,7 @@ import SplitButton from "./components/SplitButton";
 import styles from "./styles";
 import { useLoadingContext } from "context/loading";
 
-const DEV_MODE = true;
+const DEV_MODE = false;
 
 const Form = ({ switchOptions, initialValues }) => {
   const [error, setError] = useState({ status: false, message: "" });
@@ -34,10 +34,7 @@ const Form = ({ switchOptions, initialValues }) => {
       return new Promise(resolve => {
         setTimeout(() => {
           setLoading(false);
-          router.push({
-            pathname: "/main/create/success",
-            query: { type },
-          });
+          router.push(`/main/create/success/${type}`);
           resolve();
         }, 500);
       });
@@ -47,7 +44,7 @@ const Form = ({ switchOptions, initialValues }) => {
       .post("/api/items", getNextValues(values))
       .then(() => {
         setLoading(false);
-        router.push("/main/create/success");
+        router.push(`success/${type}`);
       })
       .catch(err => {
         setLoading(false);
