@@ -6,6 +6,10 @@ const Commons = createGlobalStyle`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &--column {
+      flex-direction: column;
+    }
   }
 
   .button--main-action {
@@ -41,6 +45,7 @@ const Commons = createGlobalStyle`
     &--1280 {
       max-width: 1280px;
       margin: 0 auto;
+      flex-grow: 1;
     }
   }
 `;

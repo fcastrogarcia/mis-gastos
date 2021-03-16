@@ -11,9 +11,10 @@ import SplitButton from "./components/SplitButton";
 import styles from "./styles";
 import { useLoadingContext } from "context/loading";
 
+const DEV_MODE = true;
+
 const Form = ({ switchOptions, initialValues }) => {
   const [error, setError] = useState({ status: false, message: "" });
-  const [success, setSuccess] = useState(false);
 
   const { setLoading } = useLoadingContext();
   const router = useRouter();
@@ -23,22 +24,36 @@ const Form = ({ switchOptions, initialValues }) => {
     onSubmit,
   });
 
+  const { values, handleChange, setFieldValue } = formik;
+  const { type, name, date, amount, provider, details, save_as_template } = values;
+
   function onSubmit(values) {
     setLoading(true);
+
+    if (DEV_MODE) {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          setLoading(false);
+          router.push({
+            pathname: "/main/create/success",
+            query: { type },
+          });
+          resolve();
+        }, 500);
+      });
+    }
+
     axios
       .post("/api/items", getNextValues(values))
       .then(() => {
         setLoading(false);
-        router.push("/main");
+        router.push("/main/create/success");
       })
       .catch(err => {
         setLoading(false);
         setError({ status: true, message: err.message });
       });
   }
-
-  const { values, handleChange, setFieldValue } = formik;
-  const { type, name, date, amount, provider, details, save_as_template } = values;
 
   const handleDateChange = date => setFieldValue("date", date);
 
@@ -133,9 +148,9 @@ Form.defaultProps = {
   ],
   initialValues: {
     type: "payment",
-    name: "",
+    name: DEV_MODE ? "Test item" : "",
     provider: "",
-    amount: null,
+    amount: DEV_MODE ? 12 : null,
     date: null,
     details: "",
     save_as_template: false,
