@@ -1,4 +1,3 @@
-import React from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { Layout } from "components/Layout";
 import styled from "styled-components";
@@ -48,32 +47,34 @@ type SuccessProps = {
   type: string;
 };
 
-const Success: React.FC<SuccessProps> = ({ type }) => (
-  <Layout>
-    <Container>
-      <Card>
-        <Upper>
-          <Legend>
-            <Check />
-            <p>Your {type} was created succesfully</p>
-          </Legend>
-        </Upper>
-        <Buttons>
-          <Link href="/main">
-            <Button color="primary" variant="outlined">
-              Back To Dashboard
-            </Button>
-          </Link>
-          <Link href="/main/create">
-            <Button color="primary" variant="outlined">
-              Create New Item
-            </Button>
-          </Link>
-        </Buttons>
-      </Card>
-    </Container>
-  </Layout>
-);
+function Success({ type }: SuccessProps) {
+  return (
+    <Layout>
+      <Container>
+        <Card>
+          <Upper>
+            <Legend>
+              <Check />
+              <p>Your {type} was created succesfully</p>
+            </Legend>
+          </Upper>
+          <Buttons>
+            <Link href="/main">
+              <Button color="primary" variant="outlined">
+                Back To Dashboard
+              </Button>
+            </Link>
+            <Link href="/main/create">
+              <Button color="primary" variant="outlined">
+                Create New Item
+              </Button>
+            </Link>
+          </Buttons>
+        </Card>
+      </Container>
+    </Layout>
+  );
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -82,8 +83,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { type } = params;
+export const getStaticProps: GetStaticProps = async ({ params = {} }) => {
+  const { type = "" } = params;
   return {
     props: { type },
   };

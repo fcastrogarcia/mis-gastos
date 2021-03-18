@@ -3,7 +3,7 @@ import Create from "components/Create";
 import { Layout } from "components/Layout";
 import LoadingProvider from "context/loading";
 
-const CreatePage: React.FC = () => {
+const CreatePage = () => {
   return (
     <Layout>
       <LoadingProvider>
