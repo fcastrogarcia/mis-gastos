@@ -28,8 +28,6 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     const { user = {} } = session;
     const { type } = query;
 
-    console.log({ user });
-
     switch (method) {
       case "GET":
         try {

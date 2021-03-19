@@ -2,19 +2,15 @@ import Payment from "models/Payment";
 import Expense from "models/Expense";
 import { Items, Item } from "types/items";
 
-export async function getItems(userId: string, types: string[]): Promise<Items> {
-  const parameters = {
-    user: userId,
-  };
-
+export async function getItems(user: string, types: string[]): Promise<Items> {
   const queries = types.reduce((acc, curr) => {
     switch (curr) {
       case "payment": {
-        const payments = Payment.find(parameters);
+        const payments = Payment.find({ user });
         return [...acc, payments];
       }
       case "expense": {
-        const expenses = Expense.find(parameters);
+        const expenses = Expense.find({ user });
         return [...acc, expenses];
       }
       default:
