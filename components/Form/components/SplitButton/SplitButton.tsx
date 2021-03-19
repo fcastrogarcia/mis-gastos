@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useRef, Fragment } from "react";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { ArrowDropDown } from "@styled-icons/material/ArrowDropDown";
@@ -5,19 +6,25 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Popper from "@material-ui/core/Popper";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
-import { string, func, bool } from "prop-types";
 import styles from "./styles";
 
-const SplitButton = ({ label, checked, checkboxKey, handleCheckbox, ...rest }) => {
+interface Props {
+  label: string;
+  checked: boolean;
+  checkboxKey: string;
+  handleCheckbox: VoidFunction;
+}
+
+const SplitButton = ({ label, checked, checkboxKey, handleCheckbox, ...rest }: Props) => {
   const [open, setOpen] = useState(false);
-  const anchorRef = useRef(null);
+  const anchorRef = useRef<HTMLDivElement>(null);
 
   const handleClick = () => setOpen(false);
 
   const handleToggle = () => setOpen(prevOpen => !prevOpen);
 
-  const handleClose = event => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+  const handleClose = (event: React.MouseEvent<Document, MouseEvent>) => {
+    if (anchorRef?.current?.contains(event.target as Node)) {
       return;
     }
 
@@ -79,13 +86,6 @@ const SplitButton = ({ label, checked, checkboxKey, handleCheckbox, ...rest }) =
 };
 
 export default SplitButton;
-
-SplitButton.propTypes = {
-  label: string,
-  checkboxKey: string,
-  checked: bool,
-  handleCheckbox: func,
-};
 
 SplitButton.defaultProps = {
   label: "Save",
