@@ -1,7 +1,8 @@
 import Payment from "models/Payment";
 import Expense from "models/Expense";
+import { Items, Item } from "types/items";
 
-export async function getItems(userId = "", types = []) {
+export async function getItems(userId: string, types: string[]): Promise<Items> {
   const parameters = {
     user: userId,
   };
@@ -21,12 +22,12 @@ export async function getItems(userId = "", types = []) {
     }
   }, []);
 
-  const data = await Promise.all(queries);
+  const [firstItems = [], secondItems = []] = await Promise.all(queries);
 
-  return [].concat(...data);
+  return [...firstItems, ...secondItems];
 }
 
-export async function createItem(body = {}) {
+export async function createItem(body: Item): Promise<Items> {
   const { type, user } = body;
 
   if (!type) throw new Error("Type property is required in request body");

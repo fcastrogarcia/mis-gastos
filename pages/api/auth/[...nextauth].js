@@ -1,6 +1,11 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
 import config from "config";
+// import { User } from "next-auth";
+
+// interface ExtendedUser extends User {
+//   id: string | null;
+// }
 
 const {
   DB_URI,
@@ -14,8 +19,8 @@ const {
 export default NextAuth({
   providers: [
     Providers.Google({
-      clientId: GOOGLE_CLIENT_ID,
-      clientSecret: GOOGLE_CLIENT_SECRET,
+      clientId: GOOGLE_CLIENT_ID || "",
+      clientSecret: GOOGLE_CLIENT_SECRET || "",
     }),
     // Providers.Email({
     //   server: process.env.EMAIL_SERVER,

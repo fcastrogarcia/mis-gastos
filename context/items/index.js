@@ -14,7 +14,7 @@ export default function ItemsProvider({ children }) {
 
   const { selectedPeriod } = useCalendarState();
 
-  const { data } = useSWR("/api/items?type=payment,expense", fetcher);
+  const { data } = useSWR("/api/items?type=payment&type=expense", fetcher);
 
   useEffect(() => {
     if (data) setValue({ items: getCurrentItems(data, selectedPeriod) });
