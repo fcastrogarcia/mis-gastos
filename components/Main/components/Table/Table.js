@@ -1,8 +1,14 @@
 import styles from "./styles";
 import NumberFormat from "react-number-format";
-import { array } from "prop-types";
+import { array, func } from "prop-types";
 import { getDate } from "utils/time";
 import { useCalendarState } from "context/calendar";
+// import { Items } from "types/items";
+
+// interface Props {
+//   items: Items;
+//   openSideover: VoidFunction;
+// }
 
 const table = {
   header: ["date", "name", "amount", "status"],
@@ -18,7 +24,7 @@ const Header = () => (
   </styles.Header>
 );
 
-const Table = ({ items }) => {
+const Table = ({ items, openSideover }) => {
   const { selectedPeriod } = useCalendarState();
 
   return (
@@ -26,6 +32,7 @@ const Table = ({ items }) => {
       <Header />
       <styles.Body>
         {items.map((item, index) => {
+          console.log({ item });
           const {
             current_status = "expense",
             name,
@@ -34,12 +41,13 @@ const Table = ({ items }) => {
             date,
             amount,
             type,
+            id,
           } = item;
 
           const isPayment = type === "payment";
 
           return (
-            <styles.Row key={index.toString()}>
+            <styles.Row key={index.toString()} onClick={openSideover(id)}>
               <styles.Cell className="table-cell--date">
                 {getDate(isPayment, due_date, date, selectedPeriod)}
               </styles.Cell>
@@ -67,11 +75,12 @@ const Table = ({ items }) => {
 };
 
 export default Table;
-
 Table.propTypes = {
   items: array,
+  openSideover: func,
 };
 
 Table.defaultProps = {
   items: [],
+  openSideover: () => {},
 };

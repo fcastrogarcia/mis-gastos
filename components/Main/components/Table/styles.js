@@ -13,6 +13,11 @@ const Table = styled.table`
 
 const Row = styled.tr`
   border: 1px solid ${getColor("gray", 200)};
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    background: ${getColor("basic", "fafafa")};
+  }
 `;
 
 const Header = styled.thead`
@@ -33,7 +38,7 @@ const HeaderCell = styled.th`
 `;
 
 const Cell = styled.td`
-  height: 85px;
+  height: 70px;
   padding-left: 24px;
   color: ${getColor("gray", 700)};
   font-weight: 500;
@@ -74,26 +79,31 @@ const Cell = styled.td`
               return css`
                 color: ${getColor("red", 800)};
                 background: ${getColor("red", 100)};
+                /* border: 1px solid ${getColor("red", 800)}; */
               `;
             case "paid":
               return css`
                 color: ${getColor("green", 800)};
                 background: ${getColor("green", 100)};
+                /* border: 1px solid ${getColor("green", 800)}; */
               `;
             case "pending":
               return css`
                 color: ${getColor("yellow", 800)};
                 background: ${getColor("yellow", 100)};
+                /* border: 1px solid ${getColor("yellow", 800)}; */
               `;
             case "about to lapse":
               return css`
                 color: ${getColor("orange", 800)};
                 background: ${getColor("orange", 100)};
+                /* border: 1px solid ${getColor("orange", 800)}; */
               `;
             default:
               return css`
                 color: ${getColor("blue", 800)};
                 background: ${getColor("blue", 100)};
+                /* border: 1px solid ${getColor("blue", 800)}; */
               `;
           }
         }};

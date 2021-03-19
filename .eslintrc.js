@@ -22,6 +22,7 @@ module.exports = {
       files: ["**/*.tsx"],
       rules: {
         "react/prop-types": "off",
+        "no-undef": "off",
       },
     },
   ],

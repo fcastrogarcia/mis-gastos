@@ -9,6 +9,8 @@ interface BaseItem {
   save_as_template: boolean;
   created_at: boolean;
   updated_at: boolean;
+  id: string;
+  _id: string;
 }
 
 export interface Payment extends BaseItem {
