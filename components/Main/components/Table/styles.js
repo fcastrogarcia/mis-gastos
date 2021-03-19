@@ -70,7 +70,7 @@ const Cell = styled.td`
 
         ${({ status }) => {
           switch (status) {
-            case "due":
+            case "overdue":
               return css`
                 color: ${getColor("red", 800)};
                 background: ${getColor("red", 100)};
