@@ -15,6 +15,7 @@ const Header = styled.header`
   background: ${getColor("basic", "white")};
   z-index: 99;
   width: 100%;
+  border-bottom: 1px solid ${getColor("gray", 200)};
 `;
 
 const Logo = styled(BaseLogo).attrs({ className: "flex" })`

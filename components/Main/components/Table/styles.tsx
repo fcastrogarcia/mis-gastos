@@ -5,10 +5,10 @@ import { getColor } from "styles/utils";
 const Table = styled.table`
   width: 100%;
   border-radius: 6px;
-  margin-top: 32px;
   box-shadow: ${({ theme }) => theme.shadows.basic};
   padding: 16px;
   border-collapse: collapse;
+  background: ${getColor("basic", "white")};
 `;
 
 const Row = styled.tr`
@@ -25,14 +25,13 @@ const Header = styled.thead`
   padding: 16px;
   font-size: 15px;
   text-transform: capitalize;
-  background: ${getColor("gray", 100)};
   border-bottom: 1px solid ${getColor("gray", 300)};
 `;
 
 const HeaderCell = styled.th`
   height: 48px;
   text-align: left;
-  background: ${getColor("gray", 100)};
+  /* background: ${getColor("gray", 100)}; */
   padding-left: 24px;
   font-weight: 500;
 `;

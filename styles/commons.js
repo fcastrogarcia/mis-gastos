@@ -35,12 +35,18 @@ const Commons = createGlobalStyle`
 
   .container {
     height: 100%;
-    padding: 48px 40px;
+    padding: 48px 0 0;
     box-sizing: border-box;
     width: 100%;
-
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    
     &--with-sidebar {
       width: calc(100% - 400px);
+      padding: 0;
+      position: relative;
+      top: 7px;
     }
     &--1280 {
       max-width: 1280px;

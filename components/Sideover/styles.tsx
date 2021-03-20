@@ -15,9 +15,9 @@ const Close = styled(MuiClose)`
   border-radius: 30px;
   transition: all 0.1s ease-in-out;
   cursor: pointer;
-  color: ${getColor("indigo", "800")};
+  color: ${getColor("gray", "800")};
   &:hover {
-    background: ${getColor("indigo", 200)};
+    background: ${getColor("gray", 300)};
   }
 `;
 
@@ -26,11 +26,11 @@ const Header = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 16px 24px;
-  background: ${getColor("indigo", 100)};
+  background: ${getColor("gray", 200)};
 `;
 
 const Title = styled.h3`
-  color: ${getColor("indigo", "800")};
+  color: ${getColor("gray", "800")};
   font-weight: 600;
   font-size: 24px;
 `;
