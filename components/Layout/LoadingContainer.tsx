@@ -1,4 +1,3 @@
-import { node, string } from "prop-types";
 import cx from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
@@ -14,7 +13,12 @@ const useStyles = makeStyles({
   },
 });
 
-export const LoadingContainer = ({ className, children, ...rest }) => {
+interface Props {
+  className: string;
+  children: JSX.Element;
+}
+
+export const LoadingContainer = ({ className, children, ...rest }: Props) => {
   const { loading } = useLoadingContext();
   const classes = useStyles();
 
@@ -26,13 +30,4 @@ export const LoadingContainer = ({ className, children, ...rest }) => {
       </main>
     </>
   );
-};
-
-LoadingContainer.propTypes = {
-  children: node.isRequired,
-  className: string,
-};
-
-LoadingContainer.defaultProps = {
-  className: "",
 };

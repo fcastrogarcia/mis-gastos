@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Header from "components/Header";
-import { node } from "prop-types";
 
 export const BaseLayout = styled.div`
   width: 100vw;
@@ -16,15 +15,11 @@ const LayoutComponent = styled(BaseLayout)`
   padding-top: 70px;
 `;
 
-export const Layout = ({ children, ...rest }) => {
+export const Layout = ({ children, ...rest }: { children: JSX.Element }) => {
   return (
     <LayoutComponent {...rest}>
       <Header />
       {children}
     </LayoutComponent>
   );
-};
-
-Layout.propTypes = {
-  children: node.isRequired,
 };
