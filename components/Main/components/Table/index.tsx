@@ -7,7 +7,7 @@ import Details from "../Details";
 import { Item } from "types/items";
 
 const TableContainer = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [selectedItem, selectItem] = useState("");
 
   const { items } = useItemsState();

@@ -17,7 +17,7 @@ const Sideover = ({ title, open, handleClose, children }: Props) => {
             <styles.Title>{title}</styles.Title>
             <styles.Close onClick={handleClose} size={32} />
           </styles.Header>
-          {children}
+          <styles.Container>{children}</styles.Container>
         </>
       </ClickAwayListener>
     </styles.Drawer>

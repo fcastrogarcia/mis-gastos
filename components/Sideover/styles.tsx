@@ -5,9 +5,8 @@ import { getColor } from "styles/utils";
 
 const Drawer = styled(MuiDrawer)`
   .MuiDrawer-paper {
-    width: 35vw;
-    max-width: 400px;
-    padding: 30px;
+    width: 450px;
+    max-width: 100vw;
   }
 `;
 
@@ -16,9 +15,9 @@ const Close = styled(MuiClose)`
   border-radius: 30px;
   transition: all 0.1s ease-in-out;
   cursor: pointer;
-  color: ${getColor("gray", 900)};
+  color: ${getColor("indigo", "800")};
   &:hover {
-    background: ${getColor("gray", 200)};
+    background: ${getColor("indigo", 200)};
   }
 `;
 
@@ -26,12 +25,19 @@ const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 16px 24px;
+  background: ${getColor("indigo", 100)};
 `;
 
 const Title = styled.h3`
-  color: ${getColor("gray", 900)};
+  color: ${getColor("indigo", "800")};
   font-weight: 600;
   font-size: 24px;
+`;
+
+const Container = styled.div`
+  padding: 24px;
+  height: 100%;
 `;
 
 export default {
@@ -39,4 +45,5 @@ export default {
   Title,
   Header,
   Drawer,
+  Container,
 };
