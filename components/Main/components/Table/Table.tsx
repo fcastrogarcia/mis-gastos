@@ -1,14 +1,13 @@
 import styles from "./styles";
 import NumberFormat from "react-number-format";
-import { array, func } from "prop-types";
 import { getDate } from "utils/time";
 import { useCalendarState } from "context/calendar";
-// import { Items } from "types/items";
+import { Items } from "types/items";
 
-// interface Props {
-//   items: Items;
-//   openSideover: VoidFunction;
-// }
+interface Props {
+  items: Items;
+  openSideover: (id: string) => () => void;
+}
 
 const table = {
   header: ["date", "name", "amount", "status"],
@@ -24,7 +23,7 @@ const Header = () => (
   </styles.Header>
 );
 
-const Table = ({ items, openSideover }) => {
+const Table = ({ items, openSideover }: Props) => {
   const { selectedPeriod } = useCalendarState();
 
   return (
@@ -32,7 +31,6 @@ const Table = ({ items, openSideover }) => {
       <Header />
       <styles.Body>
         {items.map((item, index) => {
-          console.log({ item });
           const {
             current_status = "expense",
             name,
@@ -75,12 +73,3 @@ const Table = ({ items, openSideover }) => {
 };
 
 export default Table;
-Table.propTypes = {
-  items: array,
-  openSideover: func,
-};
-
-Table.defaultProps = {
-  items: [],
-  openSideover: () => {},
-};

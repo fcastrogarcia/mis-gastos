@@ -4,15 +4,16 @@ import { useItemsState } from "context/items";
 import styles from "./styles";
 import EmptyItems from "../EmptyItems";
 import Details from "../Details";
+import { Item } from "types/items";
 
 const TableContainer = () => {
   const [open, setOpen] = useState(false);
-  const [selectedItem, selectItem] = useState(null);
+  const [selectedItem, selectItem] = useState("");
 
   const { items } = useItemsState();
 
   const handleClose = () => setOpen(false);
-  const handleOpen = id => () => {
+  const handleOpen = (id: string) => () => {
     selectItem(id);
     setOpen(true);
   };
@@ -37,7 +38,7 @@ const TableContainer = () => {
       <Details
         closeSideover={handleClose}
         open={open}
-        item={items.find(item => item._id === selectedItem)}
+        item={items.find((item: Item) => item._id === selectedItem)}
       />
     </>
   );

@@ -23,6 +23,6 @@ export interface Expense extends BaseItem {
   date?: Date;
 }
 
-export type Items = Array<Payment | Expense>;
+export type Items = Array<Payment & Expense>;
 
 export type Item = Payment | Expense;

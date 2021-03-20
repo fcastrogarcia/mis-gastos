@@ -37,7 +37,7 @@ const HeaderCell = styled.th`
   font-weight: 500;
 `;
 
-const Cell = styled.td`
+const Cell = styled.td<{ status?: string }>`
   height: 70px;
   padding-left: 24px;
   color: ${getColor("gray", 700)};
