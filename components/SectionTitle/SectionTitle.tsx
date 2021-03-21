@@ -7,7 +7,7 @@ const Title = styled.h1`
   color: ${getColor("gray", 700)};
   font-weight: 600;
   font-size: 22px;
-  padding: 32px 0;
+  padding: 28px 0;
 `;
 
 const SectionTitle = ({ text }: { text: string }) => {

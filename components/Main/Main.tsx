@@ -25,8 +25,8 @@ const Main = () => {
         <Header>
           <SectionTitle text="Payments & Expenses" />
         </Header>
+        <TopBar />
         <TableContainer>
-          <TopBar />
           <Table />
         </TableContainer>
       </div>

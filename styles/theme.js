@@ -117,6 +117,14 @@ export const muiTheme = createMuiTheme({
         },
       },
     },
+    MuiPaper: {
+      rounded: {
+        borderRadius: 6,
+      },
+      elevation1: {
+        boxShadow: shadows.basic,
+      },
+    },
     MuiButton: {
       root: {
         fontSize: 15,
