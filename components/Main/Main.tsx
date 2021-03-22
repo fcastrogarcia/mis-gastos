@@ -12,7 +12,7 @@ const Header = styled.div`
 
 const TableContainer = styled.div`
   background: ${getColor("gray", 100)};
-  padding: 24px;
+  padding: 0 0 40px;
   display: flex;
   flex-direction: column;
   flex: 1;

@@ -17,7 +17,7 @@ const Close = styled(MuiClose)`
   cursor: pointer;
   color: ${getColor("gray", "800")};
   &:hover {
-    background: ${getColor("gray", 300)};
+    background: ${getColor("gray", 200)};
   }
 `;
 
@@ -26,7 +26,7 @@ const Header = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 16px 24px;
-  background: ${getColor("gray", 200)};
+  border-bottom: 1px solid ${getColor("gray", 200)};
 `;
 
 const Title = styled.h3`

@@ -4,7 +4,7 @@ import { getColor } from "styles/utils";
 
 const Table = styled.table`
   width: 100%;
-  border-radius: 6px;
+  /* border-radius: 6px; */
   box-shadow: ${({ theme }) => theme.shadows.basic};
   padding: 16px;
   border-collapse: collapse;
@@ -16,7 +16,7 @@ const Row = styled.tr`
   transition: all 0.1s ease-in-out;
   cursor: pointer;
   &:hover {
-    background: ${getColor("basic", "fafafa")};
+    background: ${getColor("gray", "100")};
   }
 `;
 
@@ -78,31 +78,26 @@ const Cell = styled.td<{ status?: string }>`
               return css`
                 color: ${getColor("red", 800)};
                 background: ${getColor("red", 100)};
-                /* border: 1px solid ${getColor("red", 800)}; */
               `;
             case "paid":
               return css`
                 color: ${getColor("green", 800)};
                 background: ${getColor("green", 100)};
-                /* border: 1px solid ${getColor("green", 800)}; */
               `;
             case "pending":
               return css`
                 color: ${getColor("yellow", 800)};
                 background: ${getColor("yellow", 100)};
-                /* border: 1px solid ${getColor("yellow", 800)}; */
               `;
             case "about to lapse":
               return css`
                 color: ${getColor("orange", 800)};
                 background: ${getColor("orange", 100)};
-                /* border: 1px solid ${getColor("orange", 800)}; */
               `;
             default:
               return css`
                 color: ${getColor("blue", 800)};
                 background: ${getColor("blue", 100)};
-                /* border: 1px solid ${getColor("blue", 800)}; */
               `;
           }
         }};

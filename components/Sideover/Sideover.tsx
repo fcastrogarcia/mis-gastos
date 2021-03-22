@@ -15,7 +15,7 @@ const Sideover = ({ title, open, handleClose, children }: Props) => {
         <>
           <styles.Header>
             <styles.Title>{title}</styles.Title>
-            <styles.Close onClick={handleClose} size={32} />
+            <styles.Close onClick={handleClose} size={28} />
           </styles.Header>
           <styles.Container>{children}</styles.Container>
         </>
