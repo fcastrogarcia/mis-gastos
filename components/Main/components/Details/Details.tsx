@@ -1,5 +1,6 @@
 import Sideover from "components/Sideover";
 import { Item } from "types/items";
+import styles from "./styles";
 
 interface Props {
   closeSideover: VoidFunction;
@@ -10,7 +11,10 @@ interface Props {
 const Details = ({ closeSideover, open, item }: Props) => {
   return (
     <Sideover title="Details" handleClose={closeSideover} open={open}>
-      <p></p>
+      <styles.Container>
+        <styles.MarkAsPaid>Mark As Paid</styles.MarkAsPaid>
+        <styles.Delete>Delete</styles.Delete>
+      </styles.Container>
     </Sideover>
   );
 };

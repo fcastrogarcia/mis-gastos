@@ -36,7 +36,6 @@ const Title = styled.h3`
 `;
 
 const Container = styled.div`
-  padding: 24px;
   height: 100%;
 `;
 
