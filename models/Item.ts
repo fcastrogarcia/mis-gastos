@@ -1,12 +1,11 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { getStatus } from "utils/time";
 import startOfMonth from "date-fns/startOfMonth";
-
-const { Schema } = mongoose;
+import { Item } from "types/items";
 
 const opts = { toJSON: { virtuals: true } };
 
-const PaymentSchema = new Schema(
+const ItemSchema = new Schema(
   {
     user: {
       type: Schema.Types.ObjectId,
@@ -16,6 +15,7 @@ const PaymentSchema = new Schema(
     name: { type: String, required: true },
     amount: { type: Number, required: true },
     due_date: Date,
+    date: { type: Date, default: Date.now },
     provider: String,
     comment: String,
     period: { type: Date },
@@ -27,16 +27,18 @@ const PaymentSchema = new Schema(
   opts
 );
 
-PaymentSchema.virtual("current_status").get(function () {
+ItemSchema.virtual("current_status").get(function () {
   const isPaid = this.status.is_paid;
+  const isExpense = this.type === "expense";
   let dueDate = this.due_date;
   dueDate = new Date(dueDate).getTime();
 
+  if (isExpense) return "expense";
   if (isPaid) return "paid";
   else return getStatus(dueDate);
 });
 
-PaymentSchema.pre("save", function (next) {
+ItemSchema.pre<Item>("save", function (next) {
   const createdAt = this.created_at;
   const dueDate = this.due_date;
   const nextDate = dueDate ? dueDate : createdAt;
@@ -47,4 +49,4 @@ PaymentSchema.pre("save", function (next) {
   next();
 });
 
-export default mongoose.models.Payment || mongoose.model("Payment", PaymentSchema);
+export default mongoose.models.Item || mongoose.model<Item>("Item", ItemSchema);

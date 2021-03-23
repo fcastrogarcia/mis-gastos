@@ -1,18 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/client";
 import dbConnect from "utils/dbConnect";
-import { getItems, createItem } from "lib/items";
 import { Items } from "types/items";
+import Item from "models/Item";
+import { getTypes } from "lib/items";
 
 interface Data {
   items?: Items;
   message?: string;
 }
-
-const getTypes = (type: string | string[]): string[] => {
-  if (typeof type === "string") return Array(type);
-  else return type;
-};
 
 export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const session = await getSession({ req });
@@ -34,7 +30,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
           if (!type.length || !user.id)
             throw new Error("Item type and userId are required");
 
-          const items = await getItems(user.id as string, getTypes(type));
+          const items = await Item.find({ user: user.id, type: { $in: getTypes(type) } });
 
           res.status(200).json({ items });
         } catch (err) {
@@ -43,7 +39,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
         break;
       case "POST":
         try {
-          const items = await createItem({ ...body, user: user.id });
+          const items = await Item.create({ ...body, user: user.id });
 
           res.status(200).json({ items });
         } catch (err) {

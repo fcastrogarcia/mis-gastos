@@ -1,28 +1,31 @@
-interface BaseItem {
-  user: string;
-  name: string;
-  type: "payment" | "expense";
-  amount: number;
-  comment?: string;
-  provider?: string;
-  period?: Date;
-  save_as_template: boolean;
-  created_at: boolean;
-  updated_at: boolean;
+/* eslint-disable no-unused-vars */
+import { Document } from "mongoose";
+
+export enum CurrentStatus {
+  PAID = "paid",
+  EXPENSE = "expense",
+  OVERDUE = "overdue",
+  ABOUT_TO_LAPSE = "about to lapse",
+  PENDING = "pending",
+}
+
+export interface Item extends Document {
   id: string;
   _id: string;
-}
-
-export interface Payment extends BaseItem {
+  user: string;
+  type: "payment" | "expense";
+  name: string;
+  amount: number;
   due_date?: Date;
-  current_status: "overdue" | "paid" | "expense" | "about to lapse" | "pending";
-  status: { is_paid: boolean; date: Date };
-}
-
-export interface Expense extends BaseItem {
   date?: Date;
+  provider?: string;
+  comment?: string;
+  period?: Date;
+  status: { is_paid: boolean; date: Date };
+  current_status?: CurrentStatus;
+  save_as_template?: boolean;
+  created_at: Date;
+  updated_at: Date;
 }
 
-export type Items = Array<Payment & Expense>;
-
-export type Item = Payment | Expense;
+export type Items = Array<Item>;
