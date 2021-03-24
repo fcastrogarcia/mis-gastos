@@ -22,11 +22,12 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
     const { body = {}, method = "", query = {} } = req;
     const { user = {} } = session;
-    const { type } = query;
 
     switch (method) {
       case "GET":
         try {
+          const { type } = query;
+
           if (!type.length || !user.id)
             throw new Error("Item type and userId are required");
 
@@ -42,6 +43,18 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
           const items = await Item.create({ ...body, user: user.id });
 
           res.status(200).json({ items });
+        } catch (err) {
+          console.error(err);
+          res.status(400).json({ message: err.message });
+        }
+        break;
+      case "DELETE":
+        try {
+          const { id } = query;
+
+          const { deletedCount } = await Item.deleteMany({ _id: id });
+
+          res.status(200).json({ message: `deleted ${deletedCount} items` });
         } catch (err) {
           console.error(err);
           res.status(400).json({ message: err.message });
