@@ -4,6 +4,7 @@ import axios from "axios";
 import { node } from "prop-types";
 import { useCalendarState } from "context/calendar";
 import { getCurrentItems } from "utils/time";
+import { api } from "lib/api";
 
 const ItemsStateContext = createContext();
 const ItemsDispatchContext = createContext();
@@ -14,7 +15,7 @@ export default function ItemsProvider({ children }) {
 
   const { selectedPeriod } = useCalendarState();
 
-  const { data } = useSWR("/api/items?type=payment&type=expense", fetcher);
+  const { data } = useSWR(api.GET_ITEMS, fetcher);
 
   useEffect(() => {
     if (data) setValue({ items: getCurrentItems(data, selectedPeriod) });

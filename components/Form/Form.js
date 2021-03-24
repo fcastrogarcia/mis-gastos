@@ -11,7 +11,7 @@ import SplitButton from "./components/SplitButton";
 import styles from "./styles";
 import { useLoadingContext } from "context/loading";
 
-const DEV_MODE = true;
+const DEV_MODE = false;
 
 const Form = ({ switchOptions, initialValues }) => {
   const [error, setError] = useState({ status: false, message: "" });

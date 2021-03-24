@@ -19,6 +19,7 @@
     "mongoose": "^5.11.19",
     "next": "latest",
     "next-auth": "^3.2.0",
+    "query-string": "^7.0.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-icons": "^4.2.0",
