@@ -2,7 +2,7 @@ import { useState } from "react";
 import Sideover from "components/Sideover";
 import { Item } from "types/items";
 import styles from "./styles";
-import { deleteItems, api } from "lib/api";
+import { updateItems, deleteItems, api } from "lib/api";
 import { mutate } from "swr";
 
 interface Props {
@@ -16,19 +16,26 @@ const Details = ({ closeSideover, open, item }: Props) => {
 
   const { id } = item || {};
 
-  const handleDelete = async () => {
+  const handleOperation = (operation: () => {}) => async () => {
     setLoading(true);
-    await deleteItems(id);
+    await operation();
     setLoading(false);
     closeSideover();
     mutate(api.GET_ITEMS);
-    // faltaría la notificación toast
   };
+
+  const handleDelete = handleOperation(() => deleteItems(id));
+
+  const handleMarkAsPaid = handleOperation(() =>
+    updateItems(id, { status: { is_paid: true, date: new Date() } })
+  );
 
   return (
     <Sideover title="Details" handleClose={closeSideover} open={open} loading={loading}>
       <styles.Container>
-        <styles.MarkAsPaid>Mark As Paid</styles.MarkAsPaid>
+        <styles.MarkAsPaid disabled={loading} onClick={handleMarkAsPaid}>
+          Mark As Paid
+        </styles.MarkAsPaid>
         <styles.Delete disabled={loading} onClick={handleDelete}>
           Delete
         </styles.Delete>

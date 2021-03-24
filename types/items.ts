@@ -24,8 +24,8 @@ export interface Item extends Document {
   status: { is_paid: boolean; date: Date };
   current_status?: CurrentStatus;
   save_as_template?: boolean;
-  created_at: Date;
-  updated_at: Date;
+  created_at?: Date;
+  updated_at?: Date;
 }
 
 export type Items = Array<Item>;
