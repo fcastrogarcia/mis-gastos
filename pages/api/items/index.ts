@@ -60,6 +60,17 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
           res.status(400).json({ message: err.message });
         }
         break;
+      case "PUT":
+        try {
+          const { id } = query;
+
+          const { nModified } = await Item.updateMany({ _id: id }, body);
+
+          res.status(200).json({ message: `updated ${nModified} items` });
+        } catch (err) {
+          res.status(400).json({ message: err.message });
+        }
+        break;
       default:
         res.status(400).json({ message: "method not supported for this route" });
         break;
