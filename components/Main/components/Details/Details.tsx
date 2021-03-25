@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Sideover from "components/Sideover";
-import { Item } from "types/items";
+import { CurrentStatus, Item } from "types/items";
+import { getMarkAsPaidPayload } from "./utils";
 import styles from "./styles";
 import { updateItems, deleteItems, api } from "lib/api";
 import { mutate } from "swr";
@@ -12,12 +13,14 @@ interface Props {
   item: Item;
 }
 
+type Operation = () => Promise<any>;
+
 const Details = ({ closeSideover, open, item }: Props) => {
   const [loading, setLoading] = useState(false);
 
-  const { id } = item || {};
+  const { id, current_status, type } = item || {};
 
-  const handleOperation = (operation: () => Promise<any>) => () => {
+  const handleOperation = (operation: Operation) => () => {
     setLoading(true);
     operation().finally(() => {
       setLoading(false);
@@ -31,9 +34,7 @@ const Details = ({ closeSideover, open, item }: Props) => {
   const handleUpdateItems = (values: any) =>
     handleOperation(() => updateItems(id, values));
 
-  const handleMarkAsPaid = handleUpdateItems({
-    status: { is_paid: true, date: new Date() },
-  });
+  const handleMarkAsPaid = handleUpdateItems(getMarkAsPaidPayload(current_status));
 
   return (
     <Sideover title="Details" handleClose={closeSideover} open={open} loading={loading}>
@@ -43,6 +44,8 @@ const Details = ({ closeSideover, open, item }: Props) => {
           handleMarkAsPaid={handleMarkAsPaid}
           handleDelete={handleDelete}
           handleUpdateItems={handleUpdateItems}
+          isPayment={type === "payment"}
+          isPaid={current_status === CurrentStatus.PAID}
         />
       </styles.Container>
     </Sideover>

@@ -10,6 +10,8 @@ interface Props {
   handleMarkAsPaid: VoidFunction;
   handleDelete: VoidFunction;
   handleUpdateItems: (values: any) => VoidFunction;
+  isPayment: boolean;
+  isPaid: boolean;
 }
 
 const keys = [
@@ -23,7 +25,14 @@ const keys = [
   "current_status",
 ];
 
-const EditItem = ({ item, handleMarkAsPaid, handleDelete, handleUpdateItems }: Props) => {
+const EditItem = ({
+  item,
+  handleMarkAsPaid,
+  handleDelete,
+  handleUpdateItems,
+  isPayment,
+  isPaid,
+}: Props) => {
   const initialValues = pick(item, keys);
 
   const formik = useFormik({
@@ -52,7 +61,6 @@ const EditItem = ({ item, handleMarkAsPaid, handleDelete, handleUpdateItems }: P
   const getError = (field: string) => formik.touched[field] && formik.errors[field];
   const handleAmountChange = ({ floatValue }: NumberFormatValues) =>
     setFieldValue("amount", floatValue);
-  const isPayment = type === "payment";
   const computedDate = isPayment ? due_date : date;
 
   return (
@@ -108,9 +116,11 @@ const EditItem = ({ item, handleMarkAsPaid, handleDelete, handleUpdateItems }: P
       </styles.Container>
       <styles.Buttons>
         <styles.Button type="submit">Save changes</styles.Button>
-        <styles.Button className="mark-as-paid" onClick={handleMarkAsPaid}>
-          Mark As Paid
-        </styles.Button>
+        {isPayment && (
+          <styles.Button className="mark-as-paid" onClick={handleMarkAsPaid}>
+            {isPaid ? "Undo Payment" : "Mark As Paid"}
+          </styles.Button>
+        )}
         <styles.Button className="danger" onClick={handleDelete}>
           Delete
         </styles.Button>

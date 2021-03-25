@@ -47,4 +47,9 @@ export interface Item {
   updated_at?: Date;
 }
 
+export interface Status {
+  is_paid: boolean;
+  date: Date;
+}
+
 export type Items = Array<Item>;
