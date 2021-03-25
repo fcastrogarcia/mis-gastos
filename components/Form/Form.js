@@ -44,7 +44,7 @@ const Form = ({ switchOptions, initialValues }) => {
       .post("/api/items", getNextValues(values))
       .then(() => {
         setLoading(false);
-        router.push(`success/${type}`);
+        router.push(`/main/create/success/${type}`);
       })
       .catch(err => {
         setLoading(false);
