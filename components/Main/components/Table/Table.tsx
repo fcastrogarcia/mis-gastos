@@ -3,6 +3,7 @@ import NumberFormat from "react-number-format";
 import { getDate } from "utils/time";
 import { useCalendarState } from "context/calendar";
 import { Items } from "types/items";
+import Status from "components/Status";
 
 interface Props {
   items: Items;
@@ -32,7 +33,7 @@ const Table = ({ items, openSideover }: Props) => {
       <styles.Body>
         {items.map((item, index) => {
           const {
-            current_status = "expense",
+            current_status,
             name,
             provider,
             due_date,
@@ -62,7 +63,7 @@ const Table = ({ items, openSideover }: Props) => {
                 />
               </styles.Cell>
               <styles.Cell className="table-cell--status" status={current_status}>
-                <span>{current_status}</span>
+                <Status status={current_status} />
               </styles.Cell>
             </styles.Row>
           );

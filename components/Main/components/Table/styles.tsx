@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { getColor } from "styles/utils";
 
@@ -62,46 +62,6 @@ const Cell = styled.td<{ status?: string }>`
     &--amount {
       font-size: 17px;
       font-weight: 500;
-    }
-
-    &--status {
-      text-transform: capitalize;
-
-      & span {
-        border-radius: 50px;
-        padding: 4px 8px;
-        font-weight: 600;
-
-        ${({ status }) => {
-          switch (status) {
-            case "overdue":
-              return css`
-                color: ${getColor("red", 800)};
-                background: ${getColor("red", 100)};
-              `;
-            case "paid":
-              return css`
-                color: ${getColor("green", 800)};
-                background: ${getColor("green", 100)};
-              `;
-            case "pending":
-              return css`
-                color: ${getColor("yellow", 800)};
-                background: ${getColor("yellow", 100)};
-              `;
-            case "about to lapse":
-              return css`
-                color: ${getColor("orange", 800)};
-                background: ${getColor("orange", 100)};
-              `;
-            default:
-              return css`
-                color: ${getColor("blue", 800)};
-                background: ${getColor("blue", 100)};
-              `;
-          }
-        }};
-      }
     }
   }
 `;
