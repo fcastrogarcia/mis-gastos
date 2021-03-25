@@ -10,7 +10,6 @@ const {
 } = process.env;
 
 const DB_URI = process.env.NODE_ENV === "development" ? MONGODB_URI_DEV : MONGODB_URI;
-// const DB_URI = MONGODB_URI;
 
 export default {
   DB_URI,

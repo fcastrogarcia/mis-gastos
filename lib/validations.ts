@@ -1,7 +1,14 @@
-export const validate = state => {
+import { Item } from "types/items";
+
+interface Errors {
+  name?: string;
+  amount?: string;
+}
+
+export const validate = (state: Partial<Item>) => {
   const { name, amount } = state;
 
-  let errors = {};
+  let errors: Errors = {};
 
   const REQUIRED_FIELD = "This field is required";
 
@@ -16,12 +23,12 @@ export const validate = state => {
   return errors;
 };
 
-const renameDateKey = (values = {}) => {
+const renameDateKey = (values: Item) => {
   const { date: due_date, ...rest } = values;
   return { ...rest, due_date };
 };
 
-export const getNextValues = values => {
+export const getNextValues = (values: Item) => {
   try {
     const { type } = values;
     return type === "payment" ? renameDateKey(values) : values;

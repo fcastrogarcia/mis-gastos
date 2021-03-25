@@ -6,6 +6,8 @@ async function dbConnect() {
     return;
   }
 
+  if (!config.DB_URI) throw new Error("No URI connection string was provided");
+
   return mongoose.connect(config.DB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
