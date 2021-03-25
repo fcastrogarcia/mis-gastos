@@ -17,32 +17,33 @@ const Details = ({ closeSideover, open, item }: Props) => {
 
   const { id } = item || {};
 
-  const handleOperation = (operation: () => {}) => async () => {
+  const handleOperation = (operation: () => Promise<any>) => () => {
     setLoading(true);
-    await operation();
-    setLoading(false);
-    closeSideover();
-    mutate(api.GET_ITEMS);
+    operation().finally(() => {
+      setLoading(false);
+      closeSideover();
+      mutate(api.GET_ITEMS);
+    });
   };
 
   const handleDelete = handleOperation(() => deleteItems(id));
 
-  const handleMarkAsPaid = handleOperation(() =>
-    updateItems(id, { status: { is_paid: true, date: new Date() } })
-  );
+  const handleUpdateItems = (values: any) =>
+    handleOperation(() => updateItems(id, values));
+
+  const handleMarkAsPaid = handleUpdateItems({
+    status: { is_paid: true, date: new Date() },
+  });
 
   return (
     <Sideover title="Details" handleClose={closeSideover} open={open} loading={loading}>
       <styles.Container>
-        <EditItem item={item} handleOperation={handleOperation} />
-        <div>
-          <styles.MarkAsPaid disabled={loading} onClick={handleMarkAsPaid}>
-            Mark As Paid
-          </styles.MarkAsPaid>
-          <styles.Delete disabled={loading} onClick={handleDelete}>
-            Delete
-          </styles.Delete>
-        </div>
+        <EditItem
+          item={item}
+          handleMarkAsPaid={handleMarkAsPaid}
+          handleDelete={handleDelete}
+          handleUpdateItems={handleUpdateItems}
+        />
       </styles.Container>
     </Sideover>
   );

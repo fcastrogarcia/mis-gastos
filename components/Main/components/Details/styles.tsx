@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import MuiButton from "@material-ui/core/Button";
-import { getColor } from "styles/utils";
 
 const Container = styled.div`
   display: flex;
@@ -10,30 +9,17 @@ const Container = styled.div`
   box-sizing: border-box;
 `;
 
-const Button = styled(MuiButton).attrs({ variant: "contained" })`
-  width: 100%;
-  border-radius: 0;
-  height: 50px;
-  font-weight: 500;
-  color: ${getColor("basic", "white")};
+const Buttons = styled.div`
+  grid-column: 1 / 3;
+  display: grid;
+  grid-gap: 8px;
+`;
+
+const Button = styled(MuiButton).attrs({ variant: "contained", color: "primary" })`
+  font-size: 14px;
   &,
   &:hover {
-    border-left: none;
-    border-right: none;
-  }
-`;
-
-const MarkAsPaid = styled(Button)`
-  background: ${getColor("green", 600)};
-  &:hover {
-    background: ${getColor("green", 700)};
-  }
-`;
-
-const Delete = styled(Button)`
-  background: ${getColor("red", 650)};
-  &:hover {
-    background: ${getColor("red", 700)};
+    box-shadow: none;
   }
 `;
 
@@ -41,4 +27,4 @@ const Content = styled.div``;
 
 const Actions = styled.div``;
 
-export default { Button, Container, Content, MarkAsPaid, Delete, Actions };
+export default { Button, Buttons, Container, Content, Actions };
