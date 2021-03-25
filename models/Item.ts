@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import { getStatus } from "utils/time";
 import startOfMonth from "date-fns/startOfMonth";
-import { Item } from "types/items";
+import { ItemModel } from "types/items";
 
 const opts = { toJSON: { virtuals: true } };
 
@@ -38,7 +38,7 @@ ItemSchema.virtual("current_status").get(function () {
   else return getStatus(dueDate);
 });
 
-ItemSchema.pre<Item>("save", function (next) {
+ItemSchema.pre<ItemModel>("save", function (next) {
   const createdAt = this.created_at;
   const dueDate = this.due_date;
   const nextDate = dueDate ? dueDate : createdAt;
@@ -49,4 +49,4 @@ ItemSchema.pre<Item>("save", function (next) {
   next();
 });
 
-export default mongoose.models.Item || mongoose.model<Item>("Item", ItemSchema);
+export default mongoose.models.Item || mongoose.model<ItemModel>("Item", ItemSchema);

@@ -62,8 +62,8 @@ const Table = ({ items, openSideover }: Props) => {
                   prefix={"$"}
                 />
               </styles.Cell>
-              <styles.Cell className="table-cell--status" status={current_status}>
-                <Status status={current_status} />
+              <styles.Cell className="table-cell--status">
+                <Status value={current_status} />
               </styles.Cell>
             </styles.Row>
           );

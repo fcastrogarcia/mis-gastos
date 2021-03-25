@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import MuiTextField from "@material-ui/core/TextField";
 import BaseButton from "components/Button";
-// import { getColor } from "styles/utils";
 
 const Form = styled.form`
   display: grid;

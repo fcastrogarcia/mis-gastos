@@ -4,6 +4,7 @@ import { Item } from "types/items";
 import styles from "./styles";
 import { updateItems, deleteItems, api } from "lib/api";
 import { mutate } from "swr";
+import EditItem from "../EditItem";
 
 interface Props {
   closeSideover: VoidFunction;
@@ -33,12 +34,15 @@ const Details = ({ closeSideover, open, item }: Props) => {
   return (
     <Sideover title="Details" handleClose={closeSideover} open={open} loading={loading}>
       <styles.Container>
-        <styles.MarkAsPaid disabled={loading} onClick={handleMarkAsPaid}>
-          Mark As Paid
-        </styles.MarkAsPaid>
-        <styles.Delete disabled={loading} onClick={handleDelete}>
-          Delete
-        </styles.Delete>
+        <EditItem item={item} handleOperation={handleOperation} />
+        <div>
+          <styles.MarkAsPaid disabled={loading} onClick={handleMarkAsPaid}>
+            Mark As Paid
+          </styles.MarkAsPaid>
+          <styles.Delete disabled={loading} onClick={handleDelete}>
+            Delete
+          </styles.Delete>
+        </div>
       </styles.Container>
     </Sideover>
   );

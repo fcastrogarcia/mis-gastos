@@ -4,7 +4,7 @@ import { getColor } from "styles/utils";
 
 const Container = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   flex-direction: column;
   height: 100%;
   box-sizing: border-box;

@@ -9,7 +9,26 @@ export enum CurrentStatus {
   PENDING = "pending",
 }
 
-export interface Item extends Document {
+export interface ItemModel extends Document {
+  id: string;
+  _id: string;
+  user: string;
+  type: "payment" | "expense";
+  name: string;
+  amount: number;
+  due_date?: Date;
+  date?: Date;
+  provider?: string;
+  comment?: string;
+  period?: Date;
+  status: { is_paid: boolean; date: Date };
+  current_status?: CurrentStatus;
+  save_as_template?: boolean;
+  created_at: Date;
+  updated_at: Date;
+}
+
+export interface Item {
   id: string;
   _id: string;
   user: string;

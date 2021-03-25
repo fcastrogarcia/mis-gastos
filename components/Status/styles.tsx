@@ -2,10 +2,11 @@ import styled, { css } from "styled-components";
 import { getColor } from "styles/utils";
 import { CurrentStatus } from "types/items";
 
-const Status = styled.span<{ status: string }>`
+const Status = styled.span<{ status?: string }>`
   border-radius: 50px;
   padding: 4px 8px;
   font-weight: 600;
+  text-transform: capitalize;
 
   ${({ status }) => {
     switch (status) {

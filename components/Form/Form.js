@@ -5,7 +5,7 @@ import axios from "axios";
 import NumberFormat from "react-number-format";
 import { useFormik } from "formik";
 import Switch from "components/Switch";
-import { validate, getNextValues } from "./utils";
+import { validate, getNextValues } from "lib/validations";
 import DatePicker from "components/DatePicker";
 import SplitButton from "./components/SplitButton";
 import styles from "./styles";

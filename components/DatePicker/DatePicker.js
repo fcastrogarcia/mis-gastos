@@ -4,7 +4,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider as Provider } from "@material-ui/pickers";
 import styles from "./styles";
 
-const DatePicker = ({ label, handleChange, value }) => {
+const DatePicker = ({ label, handleChange, value, ...rest }) => {
   return (
     <Provider utils={DateFnsUtils}>
       <styles.DatePicker
@@ -20,6 +20,7 @@ const DatePicker = ({ label, handleChange, value }) => {
         KeyboardButtonProps={{
           "aria-label": "change date",
         }}
+        {...rest}
       />
     </Provider>
   );

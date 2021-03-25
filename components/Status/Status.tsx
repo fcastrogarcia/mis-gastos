@@ -1,9 +1,11 @@
 import styles from "./styles";
 
-const Status = ({ status, ...rest }: { status: string }) => {
+const Status = ({ value, ...rest }: { value?: string }) => {
+  if (!value) return null;
+
   return (
-    <styles.Status status={status} {...rest}>
-      {status}
+    <styles.Status status={value} {...rest}>
+      {value}
     </styles.Status>
   );
 };
