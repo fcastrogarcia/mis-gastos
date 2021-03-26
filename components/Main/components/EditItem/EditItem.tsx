@@ -68,7 +68,7 @@ const EditItem = ({
     <styles.Form onSubmit={formik.handleSubmit}>
       <styles.Container>
         <styles.DatePicker
-          value={new Date(computedDate)}
+          value={computedDate && new Date(computedDate)}
           handleChange={handleDateChange}
           label={isPayment ? "Due Date" : "Date"}
           clearable={"true"}
