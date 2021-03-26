@@ -57,11 +57,12 @@ const EditItem = ({
     handleUpdateItems(values)();
   }
 
-  const handleDateChange = (date: string) => setFieldValue("date", date);
+  const computedDate = isPayment ? due_date : date;
+  const computedDateField = isPayment ? "due_date" : "date";
+  const handleDateChange = (date: string) => setFieldValue(computedDateField, date);
   const getError = (field: string) => formik.touched[field] && formik.errors[field];
   const handleAmountChange = ({ floatValue }: NumberFormatValues) =>
     setFieldValue("amount", floatValue);
-  const computedDate = isPayment ? due_date : date;
 
   return (
     <styles.Form onSubmit={formik.handleSubmit}>

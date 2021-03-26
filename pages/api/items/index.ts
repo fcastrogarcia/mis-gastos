@@ -3,7 +3,7 @@ import { getSession } from "next-auth/client";
 import dbConnect from "utils/dbConnect";
 import { Items } from "types/items";
 import Item from "models/Item";
-import { getTypes } from "lib/items";
+import { getTypes, getDerivedBody } from "lib/items";
 
 interface Data {
   items?: Items;
@@ -64,7 +64,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
         try {
           const { id } = query;
 
-          const { nModified } = await Item.updateMany({ _id: id }, body);
+          const { nModified } = await Item.updateMany({ _id: id }, getDerivedBody(body));
 
           res.status(200).json({ message: `updated ${nModified} items` });
         } catch (err) {

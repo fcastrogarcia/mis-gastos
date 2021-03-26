@@ -39,12 +39,10 @@ ItemSchema.virtual("current_status").get(function () {
 });
 
 ItemSchema.pre<ItemModel>("save", function (next) {
-  const createdAt = this.created_at;
-  const dueDate = this.due_date;
-  const nextDate = dueDate ? dueDate : createdAt;
-  const date = startOfMonth(new Date(nextDate).getTime());
+  const date = this.due_date || this.date || this.created_at;
+  const period = startOfMonth(new Date(date).getTime());
 
-  this.period = date;
+  this.period = period;
 
   next();
 });
