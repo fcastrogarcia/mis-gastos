@@ -105,18 +105,18 @@ const Form = ({ switchOptions, initialValues }) => {
           value={date}
           handleChange={handleDateChange}
           label={isPayment ? "Due Date" : "Date"}
-          clearable
           error={Boolean(getError("date"))}
           helperText={getError("date")}
+          clearable
         />
         <styles.Fieldset
-          label="Details"
+          label="Notes"
           value={details}
           onChange={handleChange}
           type="text"
-          name="details"
-          error={Boolean(getError("details"))}
-          helperText={getError("details")}
+          name="comment"
+          error={Boolean(getError("comment"))}
+          helperText={getError("comment")}
           multiline
         />
         <styles.Submit>
@@ -149,7 +149,7 @@ Form.defaultProps = {
     provider: "",
     amount: DEV_MODE ? 12 : null,
     date: null,
-    details: "",
+    comment: "",
     save_as_template: false,
   },
 };
