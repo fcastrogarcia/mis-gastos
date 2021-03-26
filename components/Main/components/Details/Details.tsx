@@ -31,7 +31,7 @@ const Details = ({ closeSideover, open, item }: Props) => {
 
   const handleDelete = handleOperation(() => deleteItems(id));
 
-  const handleUpdateItems = (values: any) =>
+  const handleUpdateItems = (values: Partial<Item>) =>
     handleOperation(() => updateItems(id, values));
 
   const handleMarkAsPaid = handleUpdateItems(getMarkAsPaidPayload(current_status));

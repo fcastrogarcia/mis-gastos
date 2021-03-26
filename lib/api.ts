@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Items } from "types/items";
+import { Items, Item } from "types/items";
 import querystring from "query-string";
 
 export const api = {
@@ -16,7 +16,10 @@ export const deleteItems = (id: string | string[]): Promise<Items> => {
   return axios.delete(api.DELETE_ITEMS + query);
 };
 
-export const updateItems = (id: string | string[], body: any): Promise<Items> => {
+export const updateItems = (
+  id: string | string[],
+  body: Partial<Item>
+): Promise<Items> => {
   if (!id) return Promise.reject(new Error("No id was provided"));
 
   const query = querystring.stringify({ id });

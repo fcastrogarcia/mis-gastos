@@ -1,11 +1,11 @@
-import { CurrentStatus, Status } from "types/items";
+import { CurrentStatus, Status, Item } from "types/items";
 
-export const getMarkAsPaidPayload = (status?: CurrentStatus) => {
+export const getMarkAsPaidPayload = (status?: CurrentStatus): Partial<Item> => {
   const payload: Partial<Status> = {};
 
   if (!status) return payload;
 
-  if (status === "paid") {
+  if (status === CurrentStatus.PAID) {
     payload.is_paid = false;
   } else {
     payload.is_paid = true;

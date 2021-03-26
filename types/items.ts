@@ -40,7 +40,7 @@ export interface Item {
   provider?: string;
   comment?: string;
   period?: Date;
-  status: { is_paid: boolean; date: Date };
+  status?: { is_paid?: boolean; date?: Date };
   current_status?: CurrentStatus;
   save_as_template?: boolean;
   created_at?: Date;
