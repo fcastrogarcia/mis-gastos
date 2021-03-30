@@ -35,7 +35,6 @@ const Commons = createGlobalStyle`
 
   .container {
     height: 100%;
-    padding: 48px 0 0;
     box-sizing: border-box;
     width: 100%;
     display: flex;
@@ -44,7 +43,6 @@ const Commons = createGlobalStyle`
     
     &--with-sidebar {
       width: calc(100% - 400px);
-      padding: 0;
       position: relative;
       top: 7px;
     }

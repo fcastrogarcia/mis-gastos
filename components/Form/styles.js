@@ -15,7 +15,7 @@ const Fields = styled.div`
   display: grid;
   grid-template: 1fr 1fr / 1fr 1fr;
   max-width: 700px;
-  grid-gap: 48px;
+  grid-gap: 48px 32px;
 `;
 
 const AmountFieldset = styled(Fieldset).attrs({

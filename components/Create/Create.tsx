@@ -10,6 +10,9 @@ const Create = () => {
         <SectionTitle text="Add a new item" />
         <styles.Content>
           <Form />
+          {/* <styles.TemplatesContainer>
+            <styles.Paper variant="outlined">Templates</styles.Paper>
+          </styles.TemplatesContainer> */}
         </styles.Content>
       </>
     </LoadingContainer>

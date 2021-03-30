@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import { getColor } from "styles/utils";
 
-const Container = styled.div``;
+const Header = styled.div`
+  padding: 0 24px;
+  border-bottom: 1px solid ${getColor("gray", 200)};
+`;
 
 const Title = styled.h1`
   color: ${getColor("gray", 700)};
@@ -14,9 +17,9 @@ const SectionTitle = ({ text }: { text: string }) => {
   if (!text) return null;
 
   return (
-    <Container>
+    <Header>
       <Title>{text}</Title>
-    </Container>
+    </Header>
   );
 };
 

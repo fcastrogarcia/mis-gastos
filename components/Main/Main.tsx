@@ -5,26 +5,19 @@ import Table from "./components/Table";
 import styled from "styled-components";
 import { getColor } from "styles/utils";
 
-const Header = styled.div`
-  padding: 0 24px;
-  border-bottom: 1px solid ${getColor("gray", 200)};
-`;
-
 const TableContainer = styled.div`
-  background: ${getColor("gray", 100)};
-  padding: 0 0 40px;
+  /* background: ${getColor("gray", 100)}; */
   display: flex;
   flex-direction: column;
   flex: 1;
+  padding: 0 24px;
 `;
 
 const Main = () => {
   return (
     <>
       <div className="container container--with-sidebar">
-        <Header>
-          <SectionTitle text="Payments & Expenses" />
-        </Header>
+        <SectionTitle text="Payments & Expenses" />
         <TopBar />
         <TableContainer>
           <Table />

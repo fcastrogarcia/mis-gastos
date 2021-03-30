@@ -9,9 +9,13 @@ const Message = styled.h3`
 `;
 
 const Paper = styled(MuiPaper)`
-  padding: 32px;
+  padding: 40px;
 `;
 
-const Container = styled.div``;
+const Container = styled.div`
+  background: ${getColor("basic", "fafafa")};
+  border-radius: 8px;
+  padding: 32px;
+`;
 
 export default { Message, Container, Paper };

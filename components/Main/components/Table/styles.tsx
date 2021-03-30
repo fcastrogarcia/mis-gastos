@@ -2,21 +2,27 @@ import styled from "styled-components";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { getColor } from "styles/utils";
 
+const TableWrapper = styled.div`
+  border: 1px solid ${getColor("gray", 300)};
+  border-radius: 8px;
+  overflow: hidden;
+`;
+
 const Table = styled.table`
   width: 100%;
-  /* border-radius: 6px; */
-  box-shadow: ${({ theme }) => theme.shadows.basic};
   padding: 16px;
   border-collapse: collapse;
   background: ${getColor("basic", "white")};
 `;
 
 const Row = styled.tr`
-  border: 1px solid ${getColor("gray", 200)};
+  border: 1px solid ${getColor("gray", 300)};
+  border-left: none;
+  border-right: none;
   transition: all 0.1s ease-in-out;
   cursor: pointer;
-  &:hover {
-    background: ${getColor("gray", "100")};
+  &:last-child {
+    border-bottom: none;
   }
 `;
 
@@ -86,4 +92,5 @@ export default {
   Body,
   Loader,
   Container,
+  TableWrapper,
 };
