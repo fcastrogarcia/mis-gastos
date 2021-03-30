@@ -1,9 +1,23 @@
 import { useContext, createContext, useState, useMemo } from "react";
 
-const EditItemStateContext = createContext({});
-const EditItemDispatchContext = createContext({});
-const CreateItemStateContext = createContext({});
-const CreateItemDispatchContext = createContext({});
+interface EditItemDispatch {
+  openDetails: (id: string) => () => void;
+  closeDetails: () => void;
+}
+interface EditItemState {
+  isEditOpen: boolean;
+  selectedItem?: string;
+}
+
+interface CreateItemDispatch {
+  openCreate: () => void;
+  closeCreate: () => void;
+}
+
+const EditItemStateContext = createContext({} as EditItemState);
+const EditItemDispatchContext = createContext({} as EditItemDispatch);
+const CreateItemStateContext = createContext(false);
+const CreateItemDispatchContext = createContext({} as CreateItemDispatch);
 
 const ContextProvider = ({ children }: { children: JSX.Element }) => {
   const [isEditOpen, setEdit] = useState(false);
@@ -24,8 +38,6 @@ const ContextProvider = ({ children }: { children: JSX.Element }) => {
   const editItemStateValue = useMemo(
     () => ({
       isEditOpen,
-      closeDetails,
-      openDetails,
       selectedItem,
     }),
     [isEditOpen]

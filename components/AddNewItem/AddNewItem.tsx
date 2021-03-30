@@ -1,16 +1,29 @@
+import { useState } from "react";
 import Sideover from "components/Sideover";
-import useSideoverOperation from "hooks/useSideoverOperation";
 import Form from "components/Form";
 import {
   useCreateItemDispatchContext,
   useCreateItemStateContext,
 } from "context/sideovers";
+import { mutate } from "swr";
+import { api } from "lib/api";
+
+type Operation = () => Promise<any>;
 
 const AddNewItem = () => {
+  const [loading, setLoading] = useState(false);
+
   const { closeCreate } = useCreateItemDispatchContext();
   const isOpen = useCreateItemStateContext();
 
-  const { loading } = useSideoverOperation();
+  const handleOperation = (operation: Operation) => () => {
+    setLoading(true);
+    operation().finally(() => {
+      setLoading(false);
+      closeCreate();
+      mutate(api.GET_ITEMS);
+    });
+  };
 
   return (
     <Sideover
