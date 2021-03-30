@@ -1,20 +1,22 @@
 import Sideover from "components/Sideover";
 import useSideoverOperation from "hooks/useSideoverOperation";
 import Form from "components/Form";
+import {
+  useCreateItemDispatchContext,
+  useCreateItemStateContext,
+} from "context/sideovers";
 
-interface Props {
-  closeSideover: VoidFunction;
-  open: boolean;
-}
+const AddNewItem = () => {
+  const { closeCreate } = useCreateItemDispatchContext();
+  const isOpen = useCreateItemStateContext();
 
-const AddNewItem = ({ open = true, closeSideover }: Props) => {
   const { loading } = useSideoverOperation();
 
   return (
     <Sideover
       title="Create new item"
-      handleClose={closeSideover}
-      open={open}
+      handleClose={closeCreate}
+      open={isOpen}
       loading={loading}
     >
       <Form />

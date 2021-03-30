@@ -2,12 +2,12 @@ import styles from "./styles";
 import NumberFormat from "react-number-format";
 import { getDate } from "utils/time";
 import { useCalendarState } from "context/calendar";
+import { useEditItemDispatchContext } from "context/sideovers";
 import { Items } from "types/items";
 import Status from "components/Status";
 
 interface Props {
   items: Items;
-  openSideover: (id: string) => () => void;
 }
 
 const table = {
@@ -24,8 +24,9 @@ const Header = () => (
   </styles.Header>
 );
 
-const Table = ({ items, openSideover }: Props) => {
+const Table = ({ items }: Props) => {
   const { selectedPeriod } = useCalendarState();
+  const { openDetails } = useEditItemDispatchContext();
 
   return (
     <styles.TableWrapper>
@@ -47,7 +48,7 @@ const Table = ({ items, openSideover }: Props) => {
             const isPayment = type === "payment";
 
             return (
-              <styles.Row key={index.toString()} onClick={openSideover(id)}>
+              <styles.Row key={index.toString()} onClick={openDetails(id)}>
                 <styles.Cell className="table-cell--date">
                   {getDate(isPayment, due_date, date, selectedPeriod)}
                 </styles.Cell>

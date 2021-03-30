@@ -1,23 +1,12 @@
-import { useState } from "react";
 import Table from "./Table";
 import { useItemsState } from "context/items";
 import styles from "./styles";
 import EmptyItems from "../EmptyItems";
 import Details from "components/Details";
 import AddNewItem from "components/AddNewItem";
-import { Item } from "types/items";
 
 const TableContainer = () => {
-  const [open, setOpen] = useState(true);
-  const [selectedItem, selectItem] = useState("");
-
   const { items } = useItemsState();
-
-  const handleClose = () => setOpen(false);
-  const handleOpen = (id: string) => () => {
-    selectItem(id);
-    setOpen(true);
-  };
 
   if (!items)
     return (
@@ -35,13 +24,9 @@ const TableContainer = () => {
 
   return (
     <>
-      <Table items={items} openSideover={handleOpen} />
-      <Details
-        closeSideover={handleClose}
-        open={open}
-        item={items.find((item: Item) => item._id === selectedItem)}
-      />
-      <AddNewItem closeSideover={handleClose} open={open} />
+      <Table items={items} />
+      <Details />
+      <AddNewItem />
     </>
   );
 };

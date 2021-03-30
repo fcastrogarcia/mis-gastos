@@ -1,4 +1,11 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import {
+  createContext,
+  useContext,
+  useCallback,
+  useMemo,
+  useState,
+  useEffect,
+} from "react";
 import useSWR from "swr";
 import axios from "axios";
 import { node } from "prop-types";
@@ -17,15 +24,22 @@ export default function ItemsProvider({ children }) {
 
   const { data } = useSWR(api.GET_ITEMS, fetcher);
 
+  const getSelectedItem = useCallback(id => value.items?.find(item => item._id === id), [
+    value,
+  ]);
+
   useEffect(() => {
     if (data) setValue({ items: getCurrentItems(data, selectedPeriod) });
   }, [data, selectedPeriod]);
 
+  const memoizedValue = useMemo(() => ({ ...value, getSelectedItem }), [
+    value,
+    getSelectedItem,
+  ]);
+
   return (
-    <ItemsStateContext.Provider value={value}>
-      {/* <ItemsDispatchContext.Provider value={setItems}> */}
+    <ItemsStateContext.Provider value={memoizedValue}>
       {children}
-      {/* </ItemsDispatchContext.Provider> */}
     </ItemsStateContext.Provider>
   );
 }

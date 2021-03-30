@@ -5,25 +5,28 @@ import { getMarkAsPaidPayload } from "./utils";
 import { updateItems, deleteItems, api } from "lib/api";
 import { mutate } from "swr";
 import Form from "./components/Form";
-
-interface Props {
-  closeSideover: VoidFunction;
-  open: boolean;
-  item: Item;
-}
+import { useEditItemStateContext, useEditItemDispatchContext } from "context/sideovers";
+import { useItemsState } from "context/items";
 
 type Operation = () => Promise<any>;
 
-const Details = ({ closeSideover, open, item }: Props) => {
+const Details = () => {
   const [loading, setLoading] = useState(false);
 
-  const { id, current_status, type } = item || {};
+  const { selectedItem, isEditOpen } = useEditItemStateContext();
+  const { closeDetails } = useEditItemDispatchContext();
+
+  const { getSelectedItem } = useItemsState();
+
+  const item = getSelectedItem(selectedItem) || {};
+
+  const { id, current_status, type } = item;
 
   const handleOperation = (operation: Operation) => () => {
     setLoading(true);
     operation().finally(() => {
       setLoading(false);
-      closeSideover();
+      closeDetails();
       mutate(api.GET_ITEMS);
     });
   };
@@ -36,7 +39,12 @@ const Details = ({ closeSideover, open, item }: Props) => {
   const handleMarkAsPaid = handleUpdateItems(getMarkAsPaidPayload(current_status));
 
   return (
-    <Sideover title="Details" handleClose={closeSideover} open={open} loading={loading}>
+    <Sideover
+      title="Details"
+      handleClose={closeDetails}
+      open={isEditOpen}
+      loading={loading}
+    >
       <Form
         item={item}
         handleMarkAsPaid={handleMarkAsPaid}
