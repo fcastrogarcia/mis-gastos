@@ -3,11 +3,12 @@ import Table from "./Table";
 import { useItemsState } from "context/items";
 import styles from "./styles";
 import EmptyItems from "../EmptyItems";
-import Details from "../Details";
+import Details from "components/Details";
+import AddNewItem from "components/AddNewItem";
 import { Item } from "types/items";
 
 const TableContainer = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [selectedItem, selectItem] = useState("");
 
   const { items } = useItemsState();
@@ -40,6 +41,7 @@ const TableContainer = () => {
         open={open}
         item={items.find((item: Item) => item._id === selectedItem)}
       />
+      <AddNewItem closeSideover={handleClose} open={open} />
     </>
   );
 };

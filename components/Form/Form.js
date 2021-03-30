@@ -9,7 +9,6 @@ import { validate, getNextValues } from "lib/validations";
 import DatePicker from "components/DatePicker";
 import SplitButton from "./components/SplitButton";
 import styles from "./styles";
-import { useLoadingContext } from "context/loading";
 import Card from "@material-ui/core/Card";
 
 const DEV_MODE = true;
@@ -17,7 +16,6 @@ const DEV_MODE = true;
 const Form = ({ switchOptions, initialValues }) => {
   const [error, setError] = useState({ status: false, message: "" });
 
-  const { setLoading } = useLoadingContext();
   const router = useRouter();
   const formik = useFormik({
     initialValues,
@@ -29,12 +27,9 @@ const Form = ({ switchOptions, initialValues }) => {
   const { type, name, date, amount, provider, details, save_as_template } = values;
 
   function onSubmit(values) {
-    setLoading(true);
-
     if (DEV_MODE) {
       return new Promise(resolve => {
         setTimeout(() => {
-          setLoading(false);
           router.push(`/main/create/success/${type}`);
           resolve();
         }, 500);
@@ -44,11 +39,9 @@ const Form = ({ switchOptions, initialValues }) => {
     axios
       .post("/api/items", getNextValues(values))
       .then(() => {
-        setLoading(false);
         router.push(`/main/create/success/${type}`);
       })
       .catch(err => {
-        setLoading(false);
         setError({ status: true, message: err.message });
       });
   }

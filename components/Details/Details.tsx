@@ -2,10 +2,9 @@ import { useState } from "react";
 import Sideover from "components/Sideover";
 import { CurrentStatus, Item } from "types/items";
 import { getMarkAsPaidPayload } from "./utils";
-import styles from "./styles";
 import { updateItems, deleteItems, api } from "lib/api";
 import { mutate } from "swr";
-import EditItem from "../EditItem";
+import Form from "./components/Form";
 
 interface Props {
   closeSideover: VoidFunction;
@@ -38,16 +37,14 @@ const Details = ({ closeSideover, open, item }: Props) => {
 
   return (
     <Sideover title="Details" handleClose={closeSideover} open={open} loading={loading}>
-      <styles.Container>
-        <EditItem
-          item={item}
-          handleMarkAsPaid={handleMarkAsPaid}
-          handleDelete={handleDelete}
-          handleUpdateItems={handleUpdateItems}
-          isPayment={type === "payment"}
-          isPaid={current_status === CurrentStatus.PAID}
-        />
-      </styles.Container>
+      <Form
+        item={item}
+        handleMarkAsPaid={handleMarkAsPaid}
+        handleDelete={handleDelete}
+        handleUpdateItems={handleUpdateItems}
+        isPayment={type === "payment"}
+        isPaid={current_status === CurrentStatus.PAID}
+      />
     </Sideover>
   );
 };

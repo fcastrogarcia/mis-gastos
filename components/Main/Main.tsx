@@ -3,10 +3,8 @@ import Sidebar from "components/Sidebar";
 import TopBar from "./components/TopBar";
 import Table from "./components/Table";
 import styled from "styled-components";
-import { getColor } from "styles/utils";
 
 const TableContainer = styled.div`
-  /* background: ${getColor("gray", 100)}; */
   display: flex;
   flex-direction: column;
   flex: 1;
