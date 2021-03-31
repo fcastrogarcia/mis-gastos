@@ -3,6 +3,7 @@ import Sidebar from "components/Sidebar";
 import TopBar from "./components/TopBar";
 import Table from "./components/Table";
 import styled from "styled-components";
+import AddNewItem from "components/AddNewItem";
 
 const TableContainer = styled.div`
   display: flex;
@@ -20,6 +21,7 @@ const Main = () => {
         <TableContainer>
           <Table />
         </TableContainer>
+        <AddNewItem />
       </div>
       <Sidebar />
     </>

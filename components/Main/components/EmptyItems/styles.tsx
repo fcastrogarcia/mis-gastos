@@ -13,9 +13,9 @@ const Paper = styled(MuiPaper)`
 `;
 
 const Container = styled.div`
-  background: ${getColor("basic", "fafafa")};
   border-radius: 8px;
   padding: 32px;
+  border: 1px solid ${getColor("gray", 300)};
 `;
 
 export default { Message, Container, Paper };

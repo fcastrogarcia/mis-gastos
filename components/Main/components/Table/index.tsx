@@ -3,7 +3,6 @@ import { useItemsState } from "context/items";
 import styles from "./styles";
 import EmptyItems from "../EmptyItems";
 import Details from "components/Details";
-import AddNewItem from "components/AddNewItem";
 
 const TableContainer = () => {
   const { items } = useItemsState();
@@ -26,7 +25,6 @@ const TableContainer = () => {
     <>
       <Table items={items} />
       <Details />
-      <AddNewItem />
     </>
   );
 };
