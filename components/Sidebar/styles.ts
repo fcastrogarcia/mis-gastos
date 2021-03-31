@@ -8,7 +8,7 @@ const Sidebar = styled.aside`
   bottom: 0;
   width: 400px;
   display: grid;
-  grid-template-rows: 70px 1fr;
+  grid-template-rows: 84px 1fr;
   box-sizing: border-box;
   border-left: 1px solid ${getColor("gray", 200)};
 `;

@@ -13,11 +13,11 @@ const Title = styled.h1`
   padding: 28px 0;
 `;
 
-const SectionTitle = ({ text }: { text: string }) => {
+const SectionTitle = ({ text, ...rest }: { text: string }) => {
   if (!text) return null;
 
   return (
-    <Header>
+    <Header {...rest}>
       <Title>{text}</Title>
     </Header>
   );

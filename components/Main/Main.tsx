@@ -4,6 +4,7 @@ import TopBar from "./components/TopBar";
 import Table from "./components/Table";
 import styled from "styled-components";
 import AddNewItem from "components/AddNewItem";
+import Summary from "./components/Summary";
 
 const TableContainer = styled.div`
   display: flex;
@@ -23,7 +24,9 @@ const Main = () => {
         </TableContainer>
         <AddNewItem />
       </div>
-      <Sidebar />
+      <Sidebar>
+        <Summary />
+      </Sidebar>
     </>
   );
 };
