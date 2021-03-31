@@ -66,40 +66,12 @@ const ContextProvider = ({ children }: { children: JSX.Element }) => {
   );
 };
 
-export const useEditItemStateContext = () => {
-  const context = useContext(EditItemStateContext);
+export const useEditItemStateContext = () => useContext(EditItemStateContext);
 
-  if (context === undefined)
-    throw new Error("Context is probably not whithin its correspondat provider");
+export const useEditItemDispatchContext = () => useContext(EditItemDispatchContext);
 
-  return context;
-};
+export const useCreateItemStateContext = () => useContext(CreateItemStateContext);
 
-export const useEditItemDispatchContext = () => {
-  const context = useContext(EditItemDispatchContext);
-
-  if (context === undefined)
-    throw new Error("Context is probably not whithin its correspondat provider");
-
-  return context;
-};
-
-export const useCreateItemStateContext = () => {
-  const context = useContext(CreateItemStateContext);
-
-  if (context === undefined)
-    throw new Error("Context is probably not whithin its correspondat provider");
-
-  return context;
-};
-
-export const useCreateItemDispatchContext = () => {
-  const context = useContext(CreateItemDispatchContext);
-
-  if (context === undefined)
-    throw new Error("Context is probably not whithin its correspondat provider");
-
-  return context;
-};
+export const useCreateItemDispatchContext = () => useContext(CreateItemDispatchContext);
 
 export default ContextProvider;
