@@ -6,8 +6,8 @@ import { Item, CurrentStatus } from "types/items";
 const Summary = () => {
   const { items } = useItemsState();
 
-  const total: number = items.reduce((acc: number, curr: Item) => curr.amount + acc, 0);
-  const alreadyPaid: number = items.reduce((acc: number, curr: Item) => {
+  const total: number = items?.reduce((acc: number, curr: Item) => curr.amount + acc, 0);
+  const alreadyPaid: number = items?.reduce((acc: number, curr: Item) => {
     if (curr.current_status === CurrentStatus.PAID) return curr.amount + acc;
     return acc;
   }, 0);
