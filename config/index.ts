@@ -1,5 +1,6 @@
 const {
-  NEXTAUTH_URL,
+  NEXTAUTH_URL_DEV,
+  NEXTAUTH_URL_PRODUCTION,
   MONGODB_URI_DEV,
   MONGODB_URI,
   MONGODB_DB,
@@ -10,6 +11,9 @@ const {
 } = process.env;
 
 const DB_URI = process.env.NODE_ENV === "development" ? MONGODB_URI_DEV : MONGODB_URI;
+
+const NEXTAUTH_URL =
+  process.env.NODE_ENV === "development" ? NEXTAUTH_URL_DEV : NEXTAUTH_URL_PRODUCTION;
 
 export default {
   DB_URI,
