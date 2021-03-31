@@ -7,7 +7,7 @@ import { useFormik } from "formik";
 import Switch from "components/Switch";
 import { validate, getNextValues } from "lib/validations";
 import DatePicker from "components/DatePicker";
-import SplitButton from "./components/SplitButton";
+import SplitButton from "../AddNewItem/components/SplitButton";
 import styles from "./styles";
 import Card from "@material-ui/core/Card";
 

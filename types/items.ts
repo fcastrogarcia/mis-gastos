@@ -9,6 +9,8 @@ export enum CurrentStatus {
   PENDING = "pending",
 }
 
+export type ItemType = "payment" | "expense";
+
 export interface ItemModel extends Document {
   id: string;
   _id: string;

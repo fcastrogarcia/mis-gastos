@@ -28,7 +28,7 @@ const Button = styled.button`
           border: 1px solid ${getColor("indigo", 700)};
           background: transparent;
           &:hover {
-            background: ${getColor("gray", 100)};
+            background: ${getColor("indigo", 100)};
           }
         `;
     }
