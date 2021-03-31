@@ -10,7 +10,6 @@ const Button = styled.button`
   font-size: 15px;
   height: 40px;
   transition: all 0.1s ease-in-out;
-  font-weight: 500;
 
   ${({ variant }) => {
     switch (variant) {

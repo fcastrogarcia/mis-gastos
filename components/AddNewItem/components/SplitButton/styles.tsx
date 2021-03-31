@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import MuiCheckbox from "@material-ui/core/Checkbox";
-// import { getColor } from "styles/utils";
 import MuiFormControlLabel from "@material-ui/core/FormControlLabel";
 import MuiButton from "@material-ui/core/Button";
 import MuiPaper from "@material-ui/core/Paper";

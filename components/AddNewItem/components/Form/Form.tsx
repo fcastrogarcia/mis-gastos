@@ -16,7 +16,7 @@ interface Option {
 interface Props {
   switchOptions: Option[];
   initialValues: Partial<Item>;
-  handleOperation: (operation: Operation) => () => void;
+  handleOperation: (operation: Operation) => void;
 }
 
 const Form = ({ switchOptions, initialValues, handleOperation }: Props) => {
@@ -27,17 +27,16 @@ const Form = ({ switchOptions, initialValues, handleOperation }: Props) => {
   });
 
   const { values, handleChange, setFieldValue } = formik;
-  const { type, name, date, amount, provider, comment, save_as_template } = values;
+  const { type, name, date, amount, provider, comment } = values;
 
   function onSubmit(values: Item) {
-    console.log({ values });
     handleOperation(() => createItem(values));
   }
 
   const handleDateChange = (date: string) => setFieldValue("date", date);
   const handleAmountChange = ({ floatValue }: NumberFormatValues) =>
     setFieldValue("amount", floatValue);
-  const getError = (field: string) => formik.touched[field] && formik.errors[field];
+  const getError = (field: keyof Item) => formik.touched[field] && formik.errors[field];
   const isPayment = type === "payment";
 
   return (
@@ -98,6 +97,17 @@ const Form = ({ switchOptions, initialValues, handleOperation }: Props) => {
             helperText={getError("comment")}
             multiline
           />
+          {/* <styles.FormControlLabel
+            control={
+              <styles.Checkbox
+                checked={save_as_template}
+                onChange={handleChange}
+                name="save_as_template"
+                color="primary"
+              />
+            }
+            label="Save As Template"
+          /> */}
         </styles.Fields>
       </styles.Form>
       <styles.Submit>

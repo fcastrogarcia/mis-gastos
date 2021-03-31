@@ -131,8 +131,9 @@ export const muiTheme = createMuiTheme({
     },
     MuiButton: {
       root: {
-        fontSize: 15,
+        fontSize: 14,
         fontWeight: 400,
+        letterSpacing: 0.3,
         textTransform: "capitalize",
         height: 40,
       },
