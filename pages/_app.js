@@ -8,6 +8,7 @@ import { styledTheme, muiTheme } from "styles/theme";
 import GlobalStyle from "styles/global";
 import CommonStyles from "styles/commons";
 import { StylesProvider } from "@material-ui/core/styles";
+import { SWRConfig } from "swr";
 
 function App({ Component, pageProps }) {
   useEffect(() => {
@@ -17,6 +18,8 @@ function App({ Component, pageProps }) {
     }
   }, []);
 
+  const options = { revalidateOnFocus: false };
+
   return (
     <Provider session={pageProps.session}>
       <StyledProvider theme={styledTheme}>
@@ -24,7 +27,9 @@ function App({ Component, pageProps }) {
           <MuiProvider theme={muiTheme}>
             <CommonStyles />
             <GlobalStyle />
-            <Component {...pageProps} />
+            <SWRConfig value={options}>
+              <Component {...pageProps} />
+            </SWRConfig>
           </MuiProvider>
         </StylesProvider>
       </StyledProvider>
