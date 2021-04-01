@@ -22,7 +22,7 @@ export interface ItemModel extends Document {
   date?: Date;
   provider?: string;
   comment?: string;
-  period?: Date;
+  period?: number;
   status: { is_paid: boolean; date: Date };
   current_status?: CurrentStatus;
   save_as_template?: boolean;
