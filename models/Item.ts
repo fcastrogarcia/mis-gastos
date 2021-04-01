@@ -18,7 +18,7 @@ const ItemSchema = new Schema(
     date: { type: Date, default: Date.now },
     provider: String,
     comment: String,
-    period: { type: Number },
+    period: { type: String },
     status: { is_paid: { type: Boolean, default: false }, date: Date },
     save_as_template: { type: Boolean, default: false },
     created_at: { type: Date, default: Date.now },
@@ -43,7 +43,7 @@ ItemSchema.pre<ItemModel>("save", function (next) {
 
   const period = startOfMonth(new Date(date).getTime());
 
-  this.period = period.getTime();
+  this.period = period.toLocaleDateString();
 
   next();
 });

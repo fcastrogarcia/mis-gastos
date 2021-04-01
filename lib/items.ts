@@ -13,7 +13,7 @@ export const getDerivedBody = (body: Partial<Item>) => {
 
   if (!computedDate) return body;
 
-  const period = startOfMonth(new Date(computedDate).getTime()).getTime();
+  const period = startOfMonth(new Date(computedDate).getTime()).toLocaleDateString();
 
   return { ...body, period };
 };
