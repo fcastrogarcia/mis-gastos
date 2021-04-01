@@ -18,7 +18,7 @@ const ItemSchema = new Schema(
     date: { type: Date, default: Date.now },
     provider: String,
     comment: String,
-    period: { type: Date },
+    period: { type: Number },
     status: { is_paid: { type: Boolean, default: false }, date: Date },
     save_as_template: { type: Boolean, default: false },
     created_at: { type: Date, default: Date.now },
@@ -40,9 +40,10 @@ ItemSchema.virtual("current_status").get(function () {
 
 ItemSchema.pre<ItemModel>("save", function (next) {
   const date = this.due_date || this.date || this.created_at;
+
   const period = startOfMonth(new Date(date).getTime());
 
-  this.period = period;
+  this.period = period.getTime();
 
   next();
 });
