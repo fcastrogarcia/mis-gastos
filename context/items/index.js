@@ -15,31 +15,73 @@ import { api } from "lib/api";
 
 const ItemsStateContext = createContext();
 const ItemsDispatchContext = createContext();
+const SelectedItemsStateContext = createContext();
+const SelectedItemsDispatchContext = createContext();
 
 const fetcher = path => axios(path).then(res => res.data.items);
+
 export default function ItemsProvider({ children }) {
   const [value, setValue] = useState({ items: undefined });
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const { selectedPeriod } = useCalendarState();
 
   const { data } = useSWR(api.GET_ITEMS, fetcher);
 
-  const getSelectedItem = useCallback(id => value.items?.find(item => item._id === id), [
-    value,
-  ]);
-
   useEffect(() => {
     if (data) setValue({ items: getCurrentItems(data, selectedPeriod) });
   }, [data, selectedPeriod]);
 
-  const memoizedValue = useMemo(() => ({ ...value, getSelectedItem }), [
+  const getSelectedItem = useCallback(id => value.items?.find(item => item._id === id), [
+    value,
+  ]);
+
+  const areAllItemsSelected = useMemo(
+    () => value.items?.every(({ id }) => selectedItems.includes(id)),
+    [value, selectedItems]
+  );
+
+  const toggleAllItems = useCallback(
+    () =>
+      setSelectedItems(() =>
+        areAllItemsSelected ? [] : value.items?.map(item => item?.id)
+      ),
+    [selectedItems, value]
+  );
+
+  const toggleItem = useCallback(
+    id => () => {
+      setSelectedItems(prev =>
+        prev.includes(id) ? prev.filter(currId => currId !== id) : [...prev, id]
+      );
+    },
+    [value]
+  );
+
+  const itemsValue = useMemo(() => ({ ...value, getSelectedItem }), [
     value,
     getSelectedItem,
   ]);
 
+  const selecteItemsDispatchValue = useMemo(() => ({ toggleAllItems, toggleItem }), [
+    toggleAllItems,
+  ]);
+
+  const selecteItemsStateValue = useMemo(
+    () => ({
+      selectedItems,
+      areAllItemsSelected,
+    }),
+    [selectedItems, areAllItemsSelected]
+  );
+
   return (
-    <ItemsStateContext.Provider value={memoizedValue}>
-      {children}
+    <ItemsStateContext.Provider value={itemsValue}>
+      <SelectedItemsStateContext.Provider value={selecteItemsStateValue}>
+        <SelectedItemsDispatchContext.Provider value={selecteItemsDispatchValue}>
+          {children}
+        </SelectedItemsDispatchContext.Provider>
+      </SelectedItemsStateContext.Provider>
     </ItemsStateContext.Provider>
   );
 }
@@ -65,3 +107,6 @@ export const useItemsDispatch = () => {
 
   return context;
 };
+
+export const useSelectedItemsState = () => useContext(SelectedItemsStateContext);
+export const useSelectedItemsDispatch = () => useContext(SelectedItemsDispatchContext);

@@ -4,3 +4,8 @@ export enum SideoverType {
 }
 
 export type Operation = () => Promise<any>;
+
+export enum CheckboxType {
+  singleItem = "SINGLE_ITEM",
+  allItems = "ALL_ITEMS",
+}

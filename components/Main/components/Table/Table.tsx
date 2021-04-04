@@ -5,13 +5,21 @@ import { useCalendarState } from "context/calendar";
 import { useEditItemDispatchContext } from "context/sideovers";
 import { Items } from "types/items";
 import Status from "components/Status";
+import Checkbox from "../Checkbox";
+import { CheckboxType } from "types/atoms";
 
 interface Props {
   items: Items;
 }
 
 const table = {
-  header: ["date", "name", "amount", "status"],
+  header: [
+    <Checkbox type={CheckboxType.allItems} key="checkbox" />,
+    "date",
+    "name",
+    "amount",
+    "status",
+  ],
 };
 
 const Header = () => (
@@ -49,6 +57,9 @@ const Table = ({ items }: Props) => {
 
             return (
               <styles.Row key={index.toString()} onClick={openDetails(id)}>
+                <styles.Cell>
+                  <Checkbox type={CheckboxType.singleItem} id={id} />
+                </styles.Cell>
                 <styles.Cell className="table-cell--date">
                   {getDate(isPayment, due_date, date, selectedPeriod)}
                 </styles.Cell>
