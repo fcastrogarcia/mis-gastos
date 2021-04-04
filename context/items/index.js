@@ -41,6 +41,8 @@ export default function ItemsProvider({ children }) {
     [value, selectedItems]
   );
 
+  const quantity = useMemo(() => selectedItems.length, [selectedItems]);
+
   const toggleAllItems = useCallback(
     () =>
       setSelectedItems(() =>
@@ -63,22 +65,23 @@ export default function ItemsProvider({ children }) {
     getSelectedItem,
   ]);
 
-  const selecteItemsDispatchValue = useMemo(() => ({ toggleAllItems, toggleItem }), [
+  const selectedItemsDispatchValue = useMemo(() => ({ toggleAllItems, toggleItem }), [
     toggleAllItems,
   ]);
 
-  const selecteItemsStateValue = useMemo(
+  const selectedItemsStateValue = useMemo(
     () => ({
       selectedItems,
       areAllItemsSelected,
+      quantity,
     }),
     [selectedItems, areAllItemsSelected]
   );
 
   return (
     <ItemsStateContext.Provider value={itemsValue}>
-      <SelectedItemsStateContext.Provider value={selecteItemsStateValue}>
-        <SelectedItemsDispatchContext.Provider value={selecteItemsDispatchValue}>
+      <SelectedItemsStateContext.Provider value={selectedItemsStateValue}>
+        <SelectedItemsDispatchContext.Provider value={selectedItemsDispatchValue}>
           {children}
         </SelectedItemsDispatchContext.Provider>
       </SelectedItemsStateContext.Provider>

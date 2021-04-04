@@ -7,7 +7,7 @@ import { Items } from "types/items";
 import Status from "components/Status";
 import Checkbox from "../Checkbox";
 import { CheckboxType } from "types/atoms";
-
+import Actions from "../SelecteItemsActions";
 interface Props {
   items: Items;
 }
@@ -83,6 +83,7 @@ const Table = ({ items }: Props) => {
           })}
         </styles.Body>
       </styles.Table>
+      <Actions />
     </styles.TableWrapper>
   );
 };

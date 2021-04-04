@@ -32,6 +32,27 @@ const Button = styled.button`
         `;
     }
   }}
+
+  &,
+  &:hover {
+    box-shadow: none;
+  }
+
+  &.danger {
+    color: ${getColor("red", 600)};
+    border-color: ${getColor("red", 600)};
+    &:hover {
+      background: ${getColor("red", 50)};
+    }
+  }
+
+  &.mark-as-paid {
+    color: ${getColor("green", 700)};
+    border-color: ${getColor("green", 700)};
+    &:hover {
+      background: ${getColor("green", 50)};
+    }
+  }
 `;
 
 export default { Button };
