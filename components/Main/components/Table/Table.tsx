@@ -7,7 +7,7 @@ import { Items } from "types/items";
 import Status from "components/Status";
 import Checkbox from "../Checkbox";
 import { CheckboxType } from "types/atoms";
-import Actions from "../SelecteItemsActions";
+import Actions from "../SelectedItemsActions";
 interface Props {
   items: Items;
 }

@@ -1,10 +1,10 @@
 import styles from "./styles";
 import { useSelectedItemsState } from "context/items";
+import useUpdateAndDelete from "hooks/useUpdateAndDelete";
 
 const Actions = () => {
   const { quantity, selectedItems } = useSelectedItemsState();
-
-  console.log({ quantity, selectedItems });
+  const { handleDelete } = useUpdateAndDelete(selectedItems);
 
   if (!quantity) return null;
 
@@ -12,8 +12,12 @@ const Actions = () => {
     <styles.Container>
       <styles.Text>{quantity} items selected</styles.Text>
       <styles.Buttons>
-        <styles.Button className="danger">Delete All</styles.Button>
-        <styles.Button className="mark-as-paid">Mark As Paid</styles.Button>
+        <styles.Button onClick={handleDelete} className="danger">
+          Delete All
+        </styles.Button>
+        {/* <styles.Button onClick={handleMarkAsPaid} className="mark-as-paid">
+          Mark As Paid
+        </styles.Button> */}
       </styles.Buttons>
     </styles.Container>
   );
