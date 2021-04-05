@@ -6,49 +6,50 @@ import {
   useState,
   useEffect,
 } from "react";
-import useSWR from "swr";
-import axios from "axios";
 import { node } from "prop-types";
-import { useCalendarState } from "context/calendar";
-import { getCurrentItems } from "utils/time";
-import { api } from "lib/api";
+import useFetchItems from "./useFetchItems";
 
 const ItemsStateContext = createContext();
 const ItemsDispatchContext = createContext();
 const SelectedItemsStateContext = createContext();
 const SelectedItemsDispatchContext = createContext();
 
-const fetcher = path => axios(path).then(res => res.data.items);
-
 export default function ItemsProvider({ children }) {
-  const [value, setValue] = useState({ items: undefined });
   const [selectedItems, setSelectedItems] = useState([]);
 
-  const { selectedPeriod } = useCalendarState();
+  const { data, rawData } = useFetchItems();
 
-  const { data } = useSWR(api.GET_ITEMS, fetcher);
+  // variables
 
-  useEffect(() => {
-    if (data) setValue({ items: getCurrentItems(data, selectedPeriod) });
-  }, [data, selectedPeriod]);
+  const quantity = useMemo(() => selectedItems.length, [selectedItems, data]);
 
-  const getSelectedItem = useCallback(id => value.items?.find(item => item._id === id), [
-    value,
+  const currentIds = useMemo(() => data.items?.map(item => item.id), [data.items]);
+
+  const allIds = useMemo(() => rawData?.map(item => item.id), [rawData]);
+
+  useEffect(() => setSelectedItems(prev => prev.filter(id => allIds.includes(id))), [
+    data,
+  ]);
+
+  // methods
+
+  const getSelectedItem = useCallback(id => data.items?.find(item => item._id === id), [
+    data,
   ]);
 
   const areAllItemsSelected = useMemo(
-    () => value.items?.every(({ id }) => selectedItems.includes(id)),
-    [value, selectedItems]
+    () => data.items?.every(({ id }) => selectedItems.includes(id)),
+    [data, selectedItems]
   );
-
-  const quantity = useMemo(() => selectedItems.length, [selectedItems]);
 
   const toggleAllItems = useCallback(
     () =>
       setSelectedItems(() =>
-        areAllItemsSelected ? [] : value.items?.map(item => item?.id)
+        areAllItemsSelected
+          ? selectedItems?.filter(id => !currentIds.includes(id))
+          : [...new Set([...data.items?.map(item => item?.id), ...selectedItems])]
       ),
-    [selectedItems, value]
+    [selectedItems, data]
   );
 
   const toggleItem = useCallback(
@@ -57,11 +58,13 @@ export default function ItemsProvider({ children }) {
         prev.includes(id) ? prev.filter(currId => currId !== id) : [...prev, id]
       );
     },
-    [value]
+    [data]
   );
 
-  const itemsValue = useMemo(() => ({ ...value, getSelectedItem }), [
-    value,
+  // context values
+
+  const itemsValue = useMemo(() => ({ ...data, getSelectedItem }), [
+    data,
     getSelectedItem,
   ]);
 
