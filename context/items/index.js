@@ -27,6 +27,11 @@ export default function ItemsProvider({ children }) {
 
   const allIds = useMemo(() => rawData?.map(item => item.id), [rawData]);
 
+  const areAllItemsSelected = useMemo(
+    () => data.items?.every(({ id }) => selectedItems.includes(id)),
+    [data, selectedItems]
+  );
+
   useEffect(() => setSelectedItems(prev => prev.filter(id => allIds.includes(id))), [
     data,
   ]);
@@ -36,11 +41,6 @@ export default function ItemsProvider({ children }) {
   const getSelectedItem = useCallback(id => data.items?.find(item => item._id === id), [
     data,
   ]);
-
-  const areAllItemsSelected = useMemo(
-    () => data.items?.every(({ id }) => selectedItems.includes(id)),
-    [data, selectedItems]
-  );
 
   const toggleAllItems = useCallback(
     () =>
