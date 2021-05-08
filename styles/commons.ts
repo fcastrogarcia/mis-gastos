@@ -45,6 +45,7 @@ const Commons = createGlobalStyle`
       width: calc(100% - 400px);
       position: relative;
       top: 7px;
+      padding-bottom: 200px;
     }
     &--1280 {
       max-width: 1280px;

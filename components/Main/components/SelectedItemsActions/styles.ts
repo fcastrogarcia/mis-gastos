@@ -7,8 +7,13 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 20px 24px;
-  width: 100%;
   box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: ${getColor("basic", "white")};
+  z-index: 1200;
+  width: calc(100% - 400px);
 `;
 
 const Text = styled.p`
