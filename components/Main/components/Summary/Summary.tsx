@@ -3,15 +3,25 @@ import NumberFormat from "react-number-format";
 import { useItemsState } from "context/items";
 import { Item, CurrentStatus } from "types/items";
 
+const getTotalAmount = (items: Item[]) =>
+  items?.reduce((acc: number, curr: Item) => curr.amount + acc, 0);
+
+const getItemType = (items: Item[], type: "expense" | "payment") =>
+  items?.filter((item: Item) => item.type === type);
+
 const Summary = () => {
   const { items } = useItemsState();
 
-  const total: number = items?.reduce((acc: number, curr: Item) => curr.amount + acc, 0);
+  if (!items || !items.length) return null;
+
+  const total: number = getTotalAmount(items);
   const alreadyPaid: number = items?.reduce((acc: number, curr: Item) => {
     if (curr.current_status === CurrentStatus.PAID) return curr.amount + acc;
     return acc;
   }, 0);
-  const owed = total - alreadyPaid;
+  const payments = getItemType(items, "payment");
+  const totalExpenses = getTotalAmount(getItemType(items, "expense"));
+  const owed = getTotalAmount(payments) - alreadyPaid;
 
   return (
     <>
@@ -29,11 +39,11 @@ const Summary = () => {
           </styles.Amount>
         </styles.Block>
         <styles.Block>
-          <styles.Subtitle>Already Paid</styles.Subtitle>
+          <styles.Subtitle>Expenses</styles.Subtitle>
           <styles.Amount>
             {" "}
             <NumberFormat
-              value={alreadyPaid}
+              value={totalExpenses}
               displayType={"text"}
               thousandSeparator={true}
               prefix={"$"}
