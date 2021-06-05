@@ -21,6 +21,10 @@ const Text = styled.p`
   line-height: 40px;
 `;
 
+const LightText = styled(Text)`
+  color: ${getColor("gray", 700)};
+`;
+
 const Button = styled(MuiButton).attrs({ variant: "outlined", color: "primary" })`
   width: 120px;
 `;
@@ -31,4 +35,4 @@ const Buttons = styled.div`
   grid-auto-flow: column;
 `;
 
-export default { Container, Button, Text, Buttons };
+export default { Container, Button, Text, Buttons, LightText };

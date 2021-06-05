@@ -27,20 +27,31 @@ export default function ItemsProvider({ children }) {
 
   const allIds = useMemo(() => rawData?.map(item => item.id), [rawData]);
 
+  const selectedItemsAmount = useMemo(
+    () =>
+      data.items?.reduce((acc, curr) => {
+        if (selectedItems.includes(curr.id)) return acc + curr.amount;
+        return acc;
+      }, 0),
+    [data, selectedItems]
+  );
+
   const areAllItemsSelected = useMemo(
     () => data.items?.every(({ id }) => selectedItems.includes(id)),
     [data, selectedItems]
   );
 
-  useEffect(() => setSelectedItems(prev => prev.filter(id => allIds.includes(id))), [
-    data,
-  ]);
+  useEffect(
+    () => setSelectedItems(prev => prev.filter(id => allIds.includes(id))),
+    [data]
+  );
 
   // methods
 
-  const getSelectedItem = useCallback(id => data.items?.find(item => item._id === id), [
-    data,
-  ]);
+  const getSelectedItem = useCallback(
+    id => data.items?.find(item => item._id === id),
+    [data]
+  );
 
   const toggleAllItems = useCallback(
     () =>
@@ -63,20 +74,22 @@ export default function ItemsProvider({ children }) {
 
   // context values
 
-  const itemsValue = useMemo(() => ({ ...data, getSelectedItem }), [
-    data,
-    getSelectedItem,
-  ]);
+  const itemsValue = useMemo(
+    () => ({ ...data, getSelectedItem }),
+    [data, getSelectedItem]
+  );
 
-  const selectedItemsDispatchValue = useMemo(() => ({ toggleAllItems, toggleItem }), [
-    toggleAllItems,
-  ]);
+  const selectedItemsDispatchValue = useMemo(
+    () => ({ toggleAllItems, toggleItem }),
+    [toggleAllItems]
+  );
 
   const selectedItemsStateValue = useMemo(
     () => ({
       selectedItems,
       areAllItemsSelected,
       quantity,
+      selectedItemsAmount,
     }),
     [selectedItems, areAllItemsSelected]
   );
